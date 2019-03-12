@@ -5,10 +5,14 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service;
 
+import com.faculte.simplefacultecommande.domain.bean.Commande;
+
 /**
  *
  * @author mohcine
  */
 public interface PaiementService {
+    
+    public int payerCommande(String referenceCommande,double montant);
     
 }
