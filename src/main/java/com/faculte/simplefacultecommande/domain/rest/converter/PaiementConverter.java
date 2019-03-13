@@ -9,7 +9,7 @@ package com.faculte.simplefacultecommande.domain.rest.converter;
 import com.faculte.simplefacultecommande.commun.util.DateUtil;
 import com.faculte.simplefacultecommande.commun.util.NumberUtil;
 import com.faculte.simplefacultecommande.domain.bean.Paiement;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.PaiementVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.PaiementVo;
 import org.springframework.stereotype.Component;
 
 /**

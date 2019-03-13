@@ -25,8 +25,8 @@ public class CommandeSource implements Serializable {
     private Long id;
     @ManyToOne
     private CommandeItem commandeItem;
-    private String referenceExpressionBesoinItem;
-    private int qteLivre;
+    private Long referenceExpressionBesoinItem;
+    private int qteAffecte;
 
     public CommandeSource() {
     }
@@ -48,21 +48,27 @@ public class CommandeSource implements Serializable {
         this.commandeItem = commandeItem;
     }
 
-    public String getReferenceExpressionBesoinItem() {
+    public Long getReferenceExpressionBesoinItem() {
         return referenceExpressionBesoinItem;
     }
 
-    public void setReferenceExpressionBesoinItem(String referenceExpressionBesoinItem) {
+    public void setReferenceExpressionBesoinItem(Long referenceExpressionBesoinItem) {
         this.referenceExpressionBesoinItem = referenceExpressionBesoinItem;
     }
 
-    public int getQteLivre() {
-        return qteLivre;
+   
+
+    public int getQteAffecte() {
+        return qteAffecte;
     }
 
-    public void setQteLivre(int qteLivre) {
-        this.qteLivre = qteLivre;
+    public void setQteAffecte(int qteAffecte) {
+        this.qteAffecte = qteAffecte;
     }
+
+  
+
+    
     
     @Override
     public int hashCode() {

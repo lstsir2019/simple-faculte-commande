@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.faculte.simplefacultecommande.domain.rest.converter.vo;
+package com.faculte.simplefacultecommande.domain.rest.vo;
 
 /**
  *
@@ -14,7 +14,7 @@ public class CommandeSourceVo {
      private Long id;
     private CommandeItemVo commandeItemVo;
     private String referenceExpressionBesoinItem;
-    private String qteLivre;
+    private String qteAffecte;
 
     public Long getId() {
         return id;
@@ -40,13 +40,15 @@ public class CommandeSourceVo {
         this.referenceExpressionBesoinItem = referenceExpressionBesoinItem;
     }
 
-    public String getQteLivre() {
-        return qteLivre;
+    public String getQteAffecte() {
+        return qteAffecte;
     }
 
-    public void setQteLivre(String qteLivre) {
-        this.qteLivre = qteLivre;
+    public void setQteAffecte(String qteAffecte) {
+        this.qteAffecte = qteAffecte;
     }
+
+  
     
     
 }

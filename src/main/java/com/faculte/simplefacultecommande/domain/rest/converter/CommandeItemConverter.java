@@ -8,7 +8,7 @@ package com.faculte.simplefacultecommande.domain.rest.converter;
 
 import com.faculte.simplefacultecommande.commun.util.NumberUtil;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.CommandeItemVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import org.springframework.stereotype.Component;
 
 /**

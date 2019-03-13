@@ -8,12 +8,15 @@ package com.faculte.simplefacultecommande.domain.rest;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
+import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeItemService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
+import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
 import com.faculte.simplefacultecommande.domain.rest.converter.CommandeConverter;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.CommandeItemVo;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.CommandeVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinVo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -104,5 +107,7 @@ public class CommandeRest {
     }
     
     
-
+   
+    
+    
 }

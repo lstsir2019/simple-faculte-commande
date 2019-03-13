@@ -5,10 +5,16 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service;
 
+import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
+import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinVo;
+import java.util.List;
+
 /**
  *
  * @author mohcine
  */
 public interface CommandeSourceService {
+    
+    public int create (CommandeItem commandeItem,Long besoinItemRef , int qteAffecte);
     
 }

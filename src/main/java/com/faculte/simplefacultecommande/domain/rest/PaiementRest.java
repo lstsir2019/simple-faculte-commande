@@ -8,7 +8,7 @@ package com.faculte.simplefacultecommande.domain.rest;
 import com.faculte.simplefacultecommande.domain.bean.Paiement;
 import com.faculte.simplefacultecommande.domain.model.service.PaiementService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.PaiementVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.PaiementVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;

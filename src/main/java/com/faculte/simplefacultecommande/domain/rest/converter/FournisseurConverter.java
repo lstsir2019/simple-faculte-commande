@@ -7,7 +7,7 @@ package com.faculte.simplefacultecommande.domain.rest.converter;
 
 
 import com.faculte.simplefacultecommande.domain.bean.Fournisseur;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.FournisseurVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.FournisseurVo;
 import org.springframework.stereotype.Component;
 
 /**

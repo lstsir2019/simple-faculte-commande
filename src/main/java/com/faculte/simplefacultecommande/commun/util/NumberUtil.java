@@ -40,4 +40,22 @@ public class NumberUtil {
             return String.valueOf(value);
         }
     }
+    
+    public static String LongToString(Long value){
+        if (value==null) {
+            return CHAINE_VIDE;
+        }else{
+            return String.valueOf(value);
+        }
+    }
+    
+    public static Long StringtoLong(String value){
+        if (value==null ||value.isEmpty()) {
+            return 0L;
+        }else{
+            return   Long.parseLong(value);
+        }
+    }
+    
+    
 }

@@ -9,7 +9,7 @@ package com.faculte.simplefacultecommande.domain.rest.converter;
 import com.faculte.simplefacultecommande.commun.util.DateUtil;
 import com.faculte.simplefacultecommande.commun.util.NumberUtil;
 import com.faculte.simplefacultecommande.domain.bean.Commande;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.CommandeVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
 import org.springframework.stereotype.Component;
 
 /**

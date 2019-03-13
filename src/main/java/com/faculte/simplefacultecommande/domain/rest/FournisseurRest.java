@@ -9,7 +9,7 @@ package com.faculte.simplefacultecommande.domain.rest;
 import com.faculte.simplefacultecommande.domain.bean.Fournisseur;
 import com.faculte.simplefacultecommande.domain.model.service.FournisseurService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
-import com.faculte.simplefacultecommande.domain.rest.converter.vo.FournisseurVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.FournisseurVo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
