@@ -8,13 +8,15 @@ package com.faculte.simplefacultecommande.domain.rest;
 import com.faculte.simplefacultecommande.domain.bean.Paiement;
 import com.faculte.simplefacultecommande.domain.model.service.PaiementService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
+import com.faculte.simplefacultecommande.domain.rest.converter.PaiementConverter;
 import com.faculte.simplefacultecommande.domain.rest.vo.PaiementVo;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,11 +31,18 @@ public class PaiementRest {
     
     @Autowired
     private PaiementService paiementService;
+
+    
     
     @Autowired
     @Qualifier("paiementConverter")
     private AbstractConverter<Paiement,PaiementVo > paiementConverter;
 
+    
+    @GetMapping("/reference/{reference}")
+    public List<PaiementVo> findByCommandeReference(@PathVariable String reference) {
+        return paiementConverter.toVo(paiementService.findByCommandeReference(reference));
+    }
     @PostMapping("/referenceCommande/{referenceCommande}/montant/{montant}")
     public int payerCommande(@PathVariable String referenceCommande,@PathVariable double montant) {
         return paiementService.payerCommande(referenceCommande, montant);

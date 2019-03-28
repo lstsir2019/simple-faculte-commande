@@ -15,7 +15,7 @@ public class PaiementVo {
     private String montant;
     private String type;
     private String datePaiement;
-    private CommandeVo commandeVo;
+    //private CommandeVo commandeVo;
 
     public Long getId() {
         return id;
@@ -49,13 +49,13 @@ public class PaiementVo {
         this.datePaiement = datePaiement;
     }
 
-    public CommandeVo getCommandeVo() {
-        return commandeVo;
-    }
-
-    public void setCommandeVo(CommandeVo commandeVo) {
-        this.commandeVo = commandeVo;
-    }
+//    public CommandeVo getCommandeVo() {
+//        return commandeVo;
+//    }
+//
+//    public void setCommandeVo(CommandeVo commandeVo) {
+//        this.commandeVo = commandeVo;
+//    }
     
     
 }
