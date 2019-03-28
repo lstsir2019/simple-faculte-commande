@@ -73,7 +73,8 @@ public class CommandeRest {
         final List<CommandeItem> commandeItems=commandeItemService.findByCommandeReference(reference);
         return commandeItemConverter.toVo(commandeItems);
     }
-
+    
+    
     public CommandeService getCommandeService() {
         return commandeService;
     }

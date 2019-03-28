@@ -34,11 +34,13 @@ public class CommandeServiceItemImpl implements CommandeItemService{
              return 1;
          }
     }
-
+    
     @Override
-    public List<CommandeItem> findByCommandeReference(String reference) {
-        return commandeItemDao.findByCommandeReference(reference);
+    public List<CommandeItem> getCommandeItems(Commande commande) {
+        return commandeItemDao.findByCommandeReference(commande.getReference());
     }
+
+    
 
     public CommandeItemDao getCommandeItemDao() {
         return commandeItemDao;
@@ -47,6 +49,13 @@ public class CommandeServiceItemImpl implements CommandeItemService{
     public void setCommandeItemDao(CommandeItemDao commandeItemDao) {
         this.commandeItemDao = commandeItemDao;
     }
+
+    @Override
+    public List<CommandeItem> findByCommandeReference(String reference) {
+        return commandeItemDao.findByCommandeReference(reference);
+    }
+
+    
     
     
 }

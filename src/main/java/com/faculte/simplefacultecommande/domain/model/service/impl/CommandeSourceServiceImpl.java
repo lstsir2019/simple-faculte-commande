@@ -29,22 +29,18 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
     CommandeSourceDao commandeSourceDao;
 
     @Override
-    public int create(CommandeItem commandeItem, Long besoinItemRef, int qteAffecte) {
-        ExpressionBesoinItemVo expressionBesoinItemVo = expressionBesoinProxy.findById(besoinItemRef);
+    public int create(CommandeSource commandeSource) {
+        ExpressionBesoinItemVo expressionBesoinItemVo = expressionBesoinProxy.findById(commandeSource.getReferenceExpressionBesoinItem());
         if (expressionBesoinItemVo==null) {
             return -1;
         }else{
             int qteAccorder = NumberUtil.toInt(expressionBesoinItemVo.getQuantiteAccorder());
             int qteCommander = NumberUtil.toInt(expressionBesoinItemVo.getQuantiteCommander());
-            if (qteAffecte > qteAccorder-qteCommander) {
+            if (commandeSource.getQteAffecte() > qteAccorder-qteCommander) {
                 return -2;
-            }else if (!commandeItem.getReferenceProduit().equals(expressionBesoinItemVo.getReferenceProduit())) {
+            }else if (!commandeSource.getCommandeItem().getReferenceProduit().equals(expressionBesoinItemVo.getReferenceProduit())) {
                 return -3;
             }else{
-                CommandeSource commandeSource = new CommandeSource();
-                commandeSource.setCommandeItem(commandeItem);
-                commandeSource.setReferenceExpressionBesoinItem(besoinItemRef);
-                commandeSource.setQteAffecte(qteAffecte);
                 commandeSourceDao.save(commandeSource);
                 return 1;
             }
