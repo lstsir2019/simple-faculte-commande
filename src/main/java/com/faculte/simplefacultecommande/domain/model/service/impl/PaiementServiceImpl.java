@@ -11,6 +11,7 @@ import com.faculte.simplefacultecommande.domain.model.dao.PaiementDao;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
 import com.faculte.simplefacultecommande.domain.model.service.PaiementService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,12 @@ public class PaiementServiceImpl implements PaiementService {
 
     @Autowired
     private CommandeService commandeService;
+    
+    
+    @Override
+    public List<Paiement> findByCommandeReference(String reference) {
+        return paiementDao.findByCommandeReference(reference);
+    }
 
     @Override
     public int payerCommande(String referenceCommande, double montant) {
@@ -63,5 +70,7 @@ public class PaiementServiceImpl implements PaiementService {
     public void setCommandeService(CommandeService commandeService) {
         this.commandeService = commandeService;
     }
+
+    
 
 }

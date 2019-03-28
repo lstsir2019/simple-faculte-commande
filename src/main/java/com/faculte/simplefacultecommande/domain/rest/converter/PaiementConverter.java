@@ -28,7 +28,7 @@ public class PaiementConverter extends AbstractConverter<Paiement, PaiementVo>{
              item.setId(vo.getId());
              item.setType(vo.getType());
              item.setMontant(NumberUtil.toDecimal(vo.getMontant()));
-             item.setCommande(new CommandeConverter().toItem(vo.getCommandeVo()));
+             //item.setCommande(new CommandeConverter().toItem(vo.getCommandeVo()));
              item.setDatePaiement(DateUtil.parse(vo.getDatePaiement()));
              return item;
          }
@@ -43,7 +43,7 @@ public class PaiementConverter extends AbstractConverter<Paiement, PaiementVo>{
            vo.setId(item.getId());
            vo.setType(item.getType());
            vo.setMontant(NumberUtil.toString(item.getMontant()));
-           vo.setCommandeVo(new CommandeConverter().toVo(item.getCommande()));
+           //vo.setCommandeVo(new CommandeConverter().toVo(item.getCommande()));
            vo.setDatePaiement(DateUtil.formateDate(item.getDatePaiement()));
            return vo;
         }

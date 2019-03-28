@@ -5,7 +5,8 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service;
 
-import com.faculte.simplefacultecommande.domain.bean.Commande;
+import com.faculte.simplefacultecommande.domain.bean.Paiement;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,6 @@ import com.faculte.simplefacultecommande.domain.bean.Commande;
 public interface PaiementService {
     
     public int payerCommande(String referenceCommande,double montant);
+    public List<Paiement> findByCommandeReference(String reference);
     
 }
