@@ -8,19 +8,17 @@ package com.faculte.simplefacultecommande.domain.rest;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
-import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeItemService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
-import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
 import com.faculte.simplefacultecommande.domain.rest.converter.CommandeConverter;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
-import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinVo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author mohcine
  */
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:4200"})
 @RequestMapping("/faculte-commande/commandes")
 public class CommandeRest {
 
@@ -73,6 +71,13 @@ public class CommandeRest {
         final List<CommandeItem> commandeItems=commandeItemService.findByCommandeReference(reference);
         return commandeItemConverter.toVo(commandeItems);
     }
+    
+    @DeleteMapping("/reference/{reference}")
+    public int deleteByReference(@PathVariable String reference) {
+        return commandeService.deleteByReference(reference);
+    }
+    
+    
     
     
     public CommandeService getCommandeService() {

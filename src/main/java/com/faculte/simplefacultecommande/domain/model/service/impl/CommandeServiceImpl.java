@@ -5,7 +5,6 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service.impl;
 
-
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.Fournisseur;
@@ -30,15 +29,18 @@ public class CommandeServiceImpl implements CommandeService {
     CommandeItemService commandeItemService;
 
     @Autowired
+    CommandeService commandeService;
+
+    @Autowired
     FournisseurService fournisseurService;
 
     @Override
     public Commande saveCommande(Commande commande) {
         Fournisseur fournisseur = fournisseurService.findByReference(commande.getFournisseur().getReference());
-        System.out.println("hhhhhhhhhhhh"+fournisseur.getLibelle());
+        System.out.println("hhhhhhhhhhhh" + fournisseur.getLibelle());
         if (fournisseur == null) {
             return null;
-        }
+        } 
             calculerTotal(commande, commande.getCommandeItems());
             commande.setFournisseur(fournisseur);
             commandeDao.save(commande);
@@ -60,6 +62,22 @@ public class CommandeServiceImpl implements CommandeService {
             }
         }
         commande.setTotal(total);
+    }
+
+    @Override
+    public int deleteByReference(String reference) {
+        Commande commande = commandeService.findByReference(reference);
+        if (commande == null) {
+            return -1;
+        } else {
+            List<CommandeItem> commandeItems = commandeItemService.getCommandeItems(commande);
+            for (CommandeItem commandeItem : commandeItems) {
+                commandeItemService.deletItem(commandeItem);
+            }
+            commandeDao.delete(commande);
+            return 1;
+        }
+
     }
 
     @Override
