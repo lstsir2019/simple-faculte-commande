@@ -35,17 +35,19 @@ public class CommandeServiceImpl implements CommandeService {
     FournisseurService fournisseurService;
 
     @Override
-    public Commande saveCommande(Commande commande) {
+    public int saveCommande(Commande commande) {
         Fournisseur fournisseur = fournisseurService.findByReference(commande.getFournisseur().getReference());
         System.out.println("hhhhhhhhhhhh" + fournisseur.getLibelle());
         if (fournisseur == null) {
-            return null;
-        } 
+            return -1;
+        }else if (commandeService.findByReference(commande.getReference())!=null || commande.getReference().equals("")) {
+            return -2;
+        }
             calculerTotal(commande, commande.getCommandeItems());
             commande.setFournisseur(fournisseur);
             commandeDao.save(commande);
             commandeItemService.saveCommandeItems(commande, commande.getCommandeItems());
-            return commande;
+            return 1;
         
     }
 

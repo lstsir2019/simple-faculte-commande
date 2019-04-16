@@ -7,6 +7,7 @@ package com.faculte.simplefacultecommande.domain.model.service;
 
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
+import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinVo;
 import java.util.List;
 
@@ -17,5 +18,6 @@ import java.util.List;
 public interface CommandeSourceService {
     
     public int create (CommandeSource commandeSource);
+    public List<ExpressionBesoinItemVo> findByProduit(String referenceProduit);
     
 }

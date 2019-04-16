@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface CommandeService {
     
-    public Commande saveCommande(Commande commande);
+    public int saveCommande(Commande commande);
     public Commande findByReference(String reference);
     public List<Commande> findAllCommande();
     public int deleteByReference(String reference);

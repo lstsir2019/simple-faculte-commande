@@ -12,6 +12,7 @@ import com.faculte.simplefacultecommande.domain.model.dao.CommandeSourceDao;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
 import com.faculte.simplefacultecommande.domain.rest.proxy.ExpressionBesoinProxy;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,11 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
                 return 1;
             }
         }
+    }
+
+    @Override
+    public List<ExpressionBesoinItemVo> findByProduit(String referenceProduit) {
+        return expressionBesoinProxy.findByReferenceProduit(referenceProduit);
     }
 
     

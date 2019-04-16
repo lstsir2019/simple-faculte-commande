@@ -8,12 +8,15 @@ package com.faculte.simplefacultecommande.domain.rest;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
+import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeItemService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
+import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
 import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter;
 import com.faculte.simplefacultecommande.domain.rest.converter.CommandeConverter;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,6 +40,8 @@ public class CommandeRest {
 
     @Autowired
     private CommandeService commandeService;
+    @Autowired
+    private CommandeSourceService commandeSourceService;
 
     @Autowired
     private CommandeItemService commandeItemService;
@@ -50,10 +55,9 @@ public class CommandeRest {
     private AbstractConverter<CommandeItem, CommandeItemVo> commandeItemConverter;
 
     @PostMapping("/")
-    public CommandeVo saveCommande(@RequestBody CommandeVo commandeVo) {
+    public int saveCommande(@RequestBody CommandeVo commandeVo) {
         Commande myCommande = commandeConverter.toItem(commandeVo);
-        Commande commande = commandeService.saveCommande(myCommande);
-        return commandeConverter.toVo(commande);
+        return commandeService.saveCommande(myCommande);
     }
 
     @GetMapping("/reference/{reference}")
@@ -75,6 +79,10 @@ public class CommandeRest {
     @DeleteMapping("/reference/{reference}")
     public int deleteByReference(@PathVariable String reference) {
         return commandeService.deleteByReference(reference);
+    }
+       @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
+    public List<ExpressionBesoinItemVo> findByProduit(@PathVariable String referenceProduit) {
+        return commandeSourceService.findByProduit( referenceProduit);
     }
     
     
@@ -111,6 +119,15 @@ public class CommandeRest {
     public void setCommandeItemConverter(AbstractConverter<CommandeItem, CommandeItemVo> commandeItemConverter) {
         this.commandeItemConverter = commandeItemConverter;
     }
+
+    public CommandeSourceService getCommandeSourceService() {
+        return commandeSourceService;
+    }
+
+    public void setCommandeSourceService(CommandeSourceService commandeSourceService) {
+        this.commandeSourceService = commandeSourceService;
+    }
+
     
     
    

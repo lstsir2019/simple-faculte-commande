@@ -25,4 +25,7 @@ public interface ExpressionBesoinProxy {
     @GetMapping("/find/{id}")
     public ExpressionBesoinItemVo findById(@PathVariable Long id);
     
+     @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
+    public List<ExpressionBesoinItemVo> findByReferenceProduit(@PathVariable String referenceProduit);
+    
 }
