@@ -17,6 +17,8 @@ public class CommandeVo {
     private String total;
     private String totalPaiement;
     private String dateCommande;
+    private String dateMax;
+    private String dateMin;
     private FournisseurVo fournisseurVo;
     private List<CommandeItemVo> commandeItemVos;
     private List<PaiementVo> paiementVos;
@@ -83,6 +85,22 @@ public class CommandeVo {
 
     public void setPaiementVos(List<PaiementVo> paiementVos) {
         this.paiementVos = paiementVos;
+    }
+
+    public String getDateMax() {
+        return dateMax;
+    }
+
+    public void setDateMax(String dateMax) {
+        this.dateMax = dateMax;
+    }
+
+    public String getDateMin() {
+        return dateMin;
+    }
+
+    public void setDateMin(String dateMin) {
+        this.dateMin = dateMin;
     }
 
     

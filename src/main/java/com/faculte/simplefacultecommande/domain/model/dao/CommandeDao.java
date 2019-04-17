@@ -6,6 +6,7 @@
 package com.faculte.simplefacultecommande.domain.model.dao;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
+import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -6,6 +6,7 @@
 package com.faculte.simplefacultecommande.domain.model.service;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,5 +19,6 @@ public interface CommandeService {
     public Commande findByReference(String reference);
     public List<Commande> findAllCommande();
     public int deleteByReference(String reference);
+    public List<Commande> chercherCommande(String reference,Date dateMax,Date dateMin);
 
 }

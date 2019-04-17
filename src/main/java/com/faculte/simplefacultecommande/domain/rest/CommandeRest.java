@@ -5,7 +5,7 @@
  */
 package com.faculte.simplefacultecommande.domain.rest;
 
-
+import com.faculte.simplefacultecommande.commun.util.DateUtil;
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
@@ -17,6 +17,7 @@ import com.faculte.simplefacultecommande.domain.rest.converter.CommandeConverter
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author mohcine
  */
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("/faculte-commande/commandes")
 public class CommandeRest {
 
@@ -72,22 +73,27 @@ public class CommandeRest {
 
     @GetMapping("/reference/{reference}/commande-items")
     public List<CommandeItemVo> findByCommande(@PathVariable("reference") String reference) {
-        final List<CommandeItem> commandeItems=commandeItemService.findByCommandeReference(reference);
+        final List<CommandeItem> commandeItems = commandeItemService.findByCommandeReference(reference);
         return commandeItemConverter.toVo(commandeItems);
     }
-    
+
     @DeleteMapping("/reference/{reference}")
     public int deleteByReference(@PathVariable String reference) {
         return commandeService.deleteByReference(reference);
     }
-       @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
+
+    @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
     public List<ExpressionBesoinItemVo> findByProduit(@PathVariable String referenceProduit) {
-        return commandeSourceService.findByProduit( referenceProduit);
+        return commandeSourceService.findByProduit(referenceProduit);
     }
-    
-    
-    
-    
+    @PostMapping("/chercherCommande")
+    public List<CommandeVo> chercherCommande(@RequestBody CommandeVo commandeVO) {
+        Date datemn=DateUtil.parse(commandeVO.getDateMin());
+        Date datemx=DateUtil.parse(commandeVO.getDateMax());
+        return commandeConverter.toVo(commandeService.chercherCommande(commandeVO.getReference(),datemx,datemn));
+    }
+
+
     public CommandeService getCommandeService() {
         return commandeService;
     }
@@ -128,9 +134,4 @@ public class CommandeRest {
         this.commandeSourceService = commandeSourceService;
     }
 
-    
-    
-   
-    
-    
 }
