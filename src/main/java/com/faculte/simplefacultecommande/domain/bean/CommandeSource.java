@@ -27,6 +27,7 @@ public class CommandeSource implements Serializable {
     private CommandeItem commandeItem;
     private Long referenceExpressionBesoinItem;
     private int qteAffecte;
+    private int qteLivre;
 
     public CommandeSource() {
     }
@@ -66,8 +67,16 @@ public class CommandeSource implements Serializable {
         this.qteAffecte = qteAffecte;
     }
 
-  
+    public int getQteLivre() {
+        return qteLivre;
+    }
 
+    public void setQteLivre(int qteLivre) {
+        this.qteLivre = qteLivre;
+    }
+
+  
+    
     
     
     @Override

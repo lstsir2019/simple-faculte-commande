@@ -10,8 +10,13 @@ package com.faculte.simplefacultecommande.domain.rest.vo;
  * @author ismail
  */
 public class CommandeSourceWithProduit {
+    
+    
     private String referenceProduit;
-    private String qteAffecte;
+    private String qteNonLivre;
+    private String referenceCommandeExpression;
+    
+    
 
     public String getReferenceProduit() {
         return referenceProduit;
@@ -21,14 +26,22 @@ public class CommandeSourceWithProduit {
         this.referenceProduit = referenceProduit;
     }
 
-    
-
-    public String getQteAffecte() {
-        return qteAffecte;
+    public String getQteNonLivre() {
+        return qteNonLivre;
     }
 
-    public void setQteAffecte(String qteAffecte) {
-        this.qteAffecte = qteAffecte;
+    public void setQteNonLivre(String qteNonLivre) {
+        this.qteNonLivre = qteNonLivre;
+    }
+
+  
+
+    public String getReferenceCommandeExpression() {
+        return referenceCommandeExpression;
+    }
+
+    public void setReferenceCommandeExpression(String referenceCommandeExpression) {
+        this.referenceCommandeExpression = referenceCommandeExpression;
     }
     
     

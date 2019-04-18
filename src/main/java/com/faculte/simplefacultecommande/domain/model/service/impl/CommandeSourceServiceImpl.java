@@ -47,6 +47,7 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
             }else if (!commandeSource.getCommandeItem().getReferenceProduit().equals(expressionBesoinItemVo.getReferenceProduit())) {
                 return -3;
             }else{
+                commandeSource.setQteLivre(0);
                 commandeSourceDao.save(commandeSource);
                 return 1;
             }
@@ -71,8 +72,12 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
         for (CommandeSource re : res) {
             ExpressionBesoinItemVo exp = expressionBesoinProxy.findById(re.getReferenceExpressionBesoinItem());
             CommandeSourceWithProduit cswp = new CommandeSourceWithProduit();
-            cswp.setQteAffecte(NumberUtil.intToString(re.getQteAffecte()));
+            int qteAff = re.getQteAffecte();
+            int qteLivre = NumberUtil.toInt(exp.getQuantiteLivre());
+            int qteNonLivre = qteAff-qteLivre;
+            cswp.setQteNonLivre(NumberUtil.intToString(qteNonLivre));
             cswp.setReferenceProduit(exp.getReferenceProduit());
+            cswp.setReferenceCommandeExpression(NumberUtil.LongToString(re.getId()));
             fin.add(cswp);
             
         }
@@ -83,6 +88,26 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
      @Override
     public List<ExpressionBesoinItemVo> findByProduit(String referenceProduit) {
         return expressionBesoinProxy.findByReferenceProduit(referenceProduit);
+    }
+    
+    
+     @Override
+    public int incerementQteLivre(String referenceCommandeExpression, int qte) {
+        Boolean exist = commandeSourceDao.existsById(NumberUtil.StringtoLong(referenceCommandeExpression));
+         if (!exist) {
+             return -1;
+         }else{
+             CommandeSource cs = commandeSourceDao.getOne(NumberUtil.StringtoLong(referenceCommandeExpression));
+             if (qte > cs.getQteAffecte() - cs.getQteLivre()) {
+                 return -2;
+             }else{
+                 cs.setQteLivre(cs.getQteLivre() + qte);
+                 commandeSourceDao.save(cs);
+                 expressionBesoinProxy.incrementQteLivre(cs.getReferenceExpressionBesoinItem(), qte);
+                 return 1;
+             }
+         }
+        
     }
 
     public ExpressionBesoinProxy getExpressionBesoinProxy() {
@@ -103,8 +128,8 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
 
    
 
-    
+   
 
     
-    
+   
 }

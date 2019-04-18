@@ -19,6 +19,7 @@ public interface CommandeSourceService {
     public int create (CommandeSource commandeSource);
     public List<ExpressionBesoinItemVo> findByProduit(String referenceProduit);
     public List<CommandeSourceWithProduit> findByRefCommandeAndRefEntite(String refCommande,String refEntite);
+    public int incerementQteLivre(String referenceCommandeExpression , int qte);
     
     
 }
