@@ -112,6 +112,10 @@ public class CommandeRest {
     public List<CategorieProduitVo> findAllCategorieProduit() {
         return produitProxy.findAllCategorier();
     }
+    @GetMapping("/produits/libelle/{libelle}")
+    public List<ProduitVo> findByCategorieProduitLibelle(@PathVariable String libelle){
+        return produitProxy.findByCategorieProduitLibelle(libelle);
+    }
     @GetMapping("/commande/{refCommande}/entity/{refEntite}")
     public List<CommandeSourceWithProduit> findByRefCommandeAndRefEntite(@PathVariable String refCommande,@PathVariable String refEntite) {
         return commandeSourceService.findByRefCommandeAndRefEntite(refCommande, refEntite);
