@@ -19,4 +19,5 @@ import org.springframework.stereotype.Repository;
 public interface CommandeSourceDao extends JpaRepository<CommandeSource, Long>{
     
     public List<CommandeSource> findByCommandeItem(CommandeItem commandeItem);
+    public List<CommandeSource> findByCommandeItemCommandeReference(String reference);
 }

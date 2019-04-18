@@ -131,6 +131,15 @@ public class CommandeServiceImpl implements CommandeService {
     public void setCommandeCHerche(CommandeCHerche commandeCHerche) {
         this.commandeCHerche = commandeCHerche;
     }
+
+    public CommandeService getCommandeService() {
+        return commandeService;
+    }
+
+    public void setCommandeService(CommandeService commandeService) {
+        this.commandeService = commandeService;
+    }
+    
     
 
 }

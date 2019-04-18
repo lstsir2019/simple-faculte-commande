@@ -22,10 +22,13 @@ public interface ExpressionBesoinProxy {
     @GetMapping("/faculte-besoin/expressionbesoins/")
     public List<ExpressionBesoinVo> findAll();
     
-    @GetMapping("/find/{id}")
+    @GetMapping("/faculte-besoin/item/find/{id}")
     public ExpressionBesoinItemVo findById(@PathVariable Long id);
     
      @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
     public List<ExpressionBesoinItemVo> findByReferenceProduit(@PathVariable String referenceProduit);
+    
+    @GetMapping("/faculte-besoin/item/entity/{codeEntity}")
+    public List<ExpressionBesoinItemVo> findByExpressionBesoinCodeEntity(@PathVariable String codeEntity);
     
 }
