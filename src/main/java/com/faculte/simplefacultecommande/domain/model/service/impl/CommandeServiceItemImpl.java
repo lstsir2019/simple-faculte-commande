@@ -5,7 +5,6 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service.impl;
 
-
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.model.dao.CommandeItemDao;
@@ -19,51 +18,65 @@ import org.springframework.stereotype.Service;
  * @author mohcine
  */
 @Service
-public class CommandeServiceItemImpl implements CommandeItemService{
+public class CommandeServiceItemImpl implements CommandeItemService {
+
     @Autowired
     private CommandeItemDao commandeItemDao;
+
     @Override
     public int saveCommandeItems(Commande commande, List<CommandeItem> commandeItems) {
-         if (commandeItems==null || commandeItems.isEmpty()) {
+        if (commandeItems == null || commandeItems.isEmpty()) {
             return -1;
-        }else{
-             for (CommandeItem commandeItem : commandeItems) {
-                 commandeItem.setCommande(commande);
-                 commandeItemDao.save(commandeItem);
-             }
-             return 1;
-         }
+        } else {
+            for (CommandeItem commandeItem : commandeItems) {
+                commandeItem.setCommande(commande);
+                commandeItemDao.save(commandeItem);
+            }
+            return 1;
+        }
     }
-    
+
     @Override
     public List<CommandeItem> getCommandeItems(Commande commande) {
         return commandeItemDao.findByCommandeReference(commande.getReference());
     }
-    
 
     @Override
     public List<CommandeItem> findByCommandeReference(String reference) {
         return commandeItemDao.findByCommandeReference(reference);
     }
-    
+
     @Override
     public int deletItem(CommandeItem commandeItem) {
-        if (commandeItem==null) {
+        if (commandeItem == null) {
             return -1;
-        }else{
+        } else {
             commandeItemDao.delete(commandeItem);
             return 1;
         }
     }
-    
 
-     public CommandeItemDao getCommandeItemDao() {
+    @Override
+    public int incrementQteReception(CommandeItem commandeItem) {
+        
+        CommandeItem ci = commandeItemDao.getOne(commandeItem.getId());
+        
+        if (commandeItem.getQteReception() > ci.getQte()-ci.getQteReception()) {
+            return -1;
+        }else {
+            ci.setQteReception(ci.getQteReception()+commandeItem.getQteReception());
+            commandeItemDao.save(ci);
+            return 1;
+        }
+        
+    }
+
+    public CommandeItemDao getCommandeItemDao() {
         return commandeItemDao;
     }
 
     public void setCommandeItemDao(CommandeItemDao commandeItemDao) {
         this.commandeItemDao = commandeItemDao;
     }
-    
-    
+
 }
