@@ -73,7 +73,7 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
             ExpressionBesoinItemVo exp = expressionBesoinProxy.findById(re.getReferenceExpressionBesoinItem());
             CommandeSourceWithProduit cswp = new CommandeSourceWithProduit();
             int qteAff = re.getQteAffecte();
-            int qteLivre = NumberUtil.toInt(exp.getQuantiteLivre());
+            int qteLivre = re.getQteLivre();
             int qteNonLivre = qteAff-qteLivre;
             cswp.setQteNonLivre(NumberUtil.intToString(qteNonLivre));
             cswp.setReferenceProduit(exp.getReferenceProduit());
