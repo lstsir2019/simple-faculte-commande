@@ -18,6 +18,7 @@ public class CommandeItemVo {
     private String qte;
     private String prix;
     private String qteReception;
+    private String referenceCommande;
     private CommandeVo commandeVo;
     private List<CommandeSourceVo> commandeSourceVos;
 
@@ -75,6 +76,14 @@ public class CommandeItemVo {
 
     public void setCommandeSourceVos(List<CommandeSourceVo> commandeSourceVos) {
         this.commandeSourceVos = commandeSourceVos;
+    }
+
+    public String getReferenceCommande() {
+        return referenceCommande;
+    }
+
+    public void setReferenceCommande(String referenceCommande) {
+        this.referenceCommande = referenceCommande;
     }
     
     

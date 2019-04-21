@@ -13,6 +13,7 @@ import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,15 +42,15 @@ public class CommandeItemRest {
     //========================================= Delegate Methods =============================================
     @PutMapping("/QteReception/increment")
     public int incrementQteReception(@RequestBody CommandeItemVo commandeItemVo) {
-        return commandeItemService.incrementQteReception(commandeItemConverter.toItem(commandeItemVo));
+        return commandeItemService.incrementQteReception(commandeItemVo);
     }
     
     @PutMapping("/commandeExpression/{referenceCommandeExpression}/QteLivre/{qte}/increment")
     public int incerementQteLivre(@PathVariable String referenceCommandeExpression,@PathVariable int qte) {
         return commandeSourceService.incerementQteLivre(referenceCommandeExpression, qte);
     }
-    
-    
+
+
     //======================================== GETTER AND SETTER =============================================
     public CommandeItemService getCommandeItemService() {
         return commandeItemService;

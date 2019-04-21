@@ -7,6 +7,7 @@ package com.faculte.simplefacultecommande.domain.model.service;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public interface CommandeItemService {
     public List<CommandeItem> findByCommandeReference(String reference);
     public List<CommandeItem> getCommandeItems(Commande commande);
     public int deletItem(CommandeItem commandeItem);
-    public int incrementQteReception(CommandeItem commandeItem);
+    public int incrementQteReception(CommandeItemVo commandeItem);
     
     
 

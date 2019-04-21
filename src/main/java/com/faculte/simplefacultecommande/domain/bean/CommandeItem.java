@@ -48,11 +48,11 @@ public class CommandeItem implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    @JsonIgnore
+    //@JsonIgnore
     public List<CommandeSource> getCommandeSources() {
         return commandeSources;
     }
-    @JsonSetter
+    //@JsonSetter
     public void setCommandeSources(List<CommandeSource> commandeSources) {
         this.commandeSources = commandeSources;
     }
