@@ -8,6 +8,7 @@ package com.faculte.simplefacultecommande.domain.rest;
 import com.faculte.simplefacultecommande.commun.util.DateUtil;
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
+import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeItemService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
@@ -15,10 +16,10 @@ import com.faculte.simplefacultecommande.domain.rest.converter.AbstractConverter
 import com.faculte.simplefacultecommande.domain.rest.converter.CommandeConverter;
 import com.faculte.simplefacultecommande.domain.rest.proxy.ProduitProxy;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
+import com.faculte.simplefacultecommande.domain.rest.vo.CommandeSourceVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeSourceWithProduit;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.CategorieProduitVo;
-import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ProduitVo;
 import java.util.Date;
 import java.util.List;
@@ -56,6 +57,10 @@ public class CommandeRest {
     @Autowired
     @Qualifier("commandeConverter")
     private AbstractConverter<Commande, CommandeVo> commandeConverter;
+    
+    @Autowired
+    @Qualifier("commandeSourceConverter")
+    private AbstractConverter<CommandeSource, CommandeSourceVo> commandeSourceConverter;
 
     @Autowired
     @Qualifier("commandeItemConverter")
@@ -87,6 +92,13 @@ public class CommandeRest {
     public int deleteByReference(@PathVariable String reference) {
         return commandeService.deleteByReference(reference);
     }
+    
+    @PostMapping("/commandeSource")
+    public int create(@RequestBody CommandeSourceVo commandeSourceVo) {
+        return  commandeSourceService.create(commandeSourceConverter.toItem(commandeSourceVo));
+    }
+    
+    
 
     
     

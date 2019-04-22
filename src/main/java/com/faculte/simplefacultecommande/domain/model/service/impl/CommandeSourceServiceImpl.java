@@ -6,7 +6,9 @@
 package com.faculte.simplefacultecommande.domain.model.service.impl;
 
 import com.faculte.simplefacultecommande.commun.util.NumberUtil;
+import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
+import com.faculte.simplefacultecommande.domain.model.dao.CommandeItemDao;
 import com.faculte.simplefacultecommande.domain.model.dao.CommandeSourceDao;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeSourceService;
 import com.faculte.simplefacultecommande.domain.rest.proxy.ExpressionBesoinProxy;
@@ -29,6 +31,9 @@ public class CommandeSourceServiceImpl implements CommandeSourceService{
     
     @Autowired
     CommandeSourceDao commandeSourceDao;
+    
+    @Autowired
+    CommandeItemDao commandeItemDao;
     
    
     
