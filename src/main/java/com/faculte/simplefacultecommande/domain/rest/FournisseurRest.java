@@ -15,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,8 +38,13 @@ public class FournisseurRest {
     @Qualifier("fournisseurConverter")
     private AbstractConverter<Fournisseur, FournisseurVo> fournisseurConverter;
     
+    @PostMapping("/")
+    public int createFournisseur(@RequestBody FournisseurVo fournisseurVo) {
+        return fournisseurService.createFournisseur(fournisseurConverter.toItem(fournisseurVo));
+    }
+    
     @GetMapping("/reference/{reference}")
-    public Fournisseur findByReference(String reference) {
+    public Fournisseur findByReference(@PathVariable String reference) {
         return fournisseurService.findByReference(reference);
     }
     
@@ -43,6 +52,16 @@ public class FournisseurRest {
     public List<FournisseurVo> findAllFournisseur() {
         return fournisseurConverter.toVo(fournisseurService.findAllFournisseur());
     }
+
+    @PutMapping("/reference/{reference}/fournisseur")
+    public int updateFournisseur(@PathVariable String reference,@RequestBody FournisseurVo fournisseurVo) {
+        return fournisseurService.updateFournisseur(reference, fournisseurConverter.toItem(fournisseurVo));
+    }
+    
+    
+    
+    
+    //=====================================
 
     public FournisseurService getFournisseurService() {
         return fournisseurService;
@@ -59,6 +78,8 @@ public class FournisseurRest {
     public void setFournisseurConverter(AbstractConverter<Fournisseur, FournisseurVo> fournisseurConverter) {
         this.fournisseurConverter = fournisseurConverter;
     }
+
+    
     
     
 }

@@ -27,6 +27,36 @@ public class FourniseurServiceImpl implements FournisseurService {
     public Fournisseur findByReference(String reference) {
         return fournisseurDao.findByReference(reference);
     }
+    
+     @Override
+    public List<Fournisseur> findAllFournisseur() {
+        return fournisseurDao.findAll();
+    }
+
+    @Override
+    public int createFournisseur(Fournisseur fournisseur) {
+        if(findByReference(fournisseur.getReference())!=null){
+            return -1;
+        }else if (fournisseur.getReference().equals("")) {
+            return -2;
+        }else{
+            fournisseurDao.save(fournisseur);
+            return 1;
+        }
+    }
+    
+    @Override
+    public int updateFournisseur(String reference, Fournisseur fournisseur) {
+        Fournisseur fr=findByReference(reference);
+        if (fr==null) {
+            return -1;
+        }else{
+            fr.setLibelle(fournisseur.getLibelle());
+            fr.setRaisonSocial(fournisseur.getRaisonSocial());
+            fournisseurDao.save(fr);
+            return 1;
+        }
+    }
 
     public FournisseurDao getFournisseurDao() {
         return fournisseurDao;
@@ -36,9 +66,8 @@ public class FourniseurServiceImpl implements FournisseurService {
         this.fournisseurDao = fournisseurDao;
     }
 
-    @Override
-    public List<Fournisseur> findAllFournisseur() {
-        return fournisseurDao.findAll();
-    }
+    
+
+   
 
 }

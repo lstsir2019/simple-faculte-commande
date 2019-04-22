@@ -15,5 +15,9 @@ import java.util.List;
 public interface FournisseurService {
     public Fournisseur findByReference(String reference);
     
+    public int createFournisseur(Fournisseur fournisseur);
+    
     public List<Fournisseur> findAllFournisseur();
+    
+    public int updateFournisseur(String reference,Fournisseur fournisseur);
 }
