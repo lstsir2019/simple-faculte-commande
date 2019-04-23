@@ -35,4 +35,6 @@ public interface ExpressionBesoinProxy {
     @PutMapping("/faculte-besoin/item/reference/{id}/qteLivre/{qte}/increment")
     public int incrementQteLivre(@PathVariable Long id, @PathVariable int qte);
 
+    @PutMapping("/faculte-besoin/item/reference/{id}/qteCommande/{qte}/increment")
+    public int incrementQteCommande(@PathVariable Long id, @PathVariable int qte);
 }
