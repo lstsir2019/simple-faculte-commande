@@ -117,6 +117,12 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
         }
 
     }
+    
+    
+    @Override
+    public List<CommandeSource> findCommandeSourcesByCommandeItem(CommandeItem commandeItem) {
+        return commandeSourceDao.findByCommandeItem(commandeItem);
+    }
 
     public ExpressionBesoinProxy getExpressionBesoinProxy() {
         return expressionBesoinProxy;
@@ -133,5 +139,6 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
     public void setCommandeSourceDao(CommandeSourceDao commandeSourceDao) {
         this.commandeSourceDao = commandeSourceDao;
     }
+
 
 }

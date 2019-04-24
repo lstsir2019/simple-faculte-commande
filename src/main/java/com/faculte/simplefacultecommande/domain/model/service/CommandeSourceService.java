@@ -5,6 +5,7 @@
  */
 package com.faculte.simplefacultecommande.domain.model.service;
 
+import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeSourceWithProduit;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ExpressionBesoinItemVo;
@@ -20,6 +21,7 @@ public interface CommandeSourceService {
     public List<ExpressionBesoinItemVo> findByProduit(String referenceProduit);
     public List<CommandeSourceWithProduit> findByRefCommandeAndRefEntite(String refCommande,String refEntite);
     public int incerementQteLivre(String referenceCommandeExpression , int qte);
+    public List<CommandeSource> findCommandeSourcesByCommandeItem(CommandeItem commandeItem);
     
     
 }

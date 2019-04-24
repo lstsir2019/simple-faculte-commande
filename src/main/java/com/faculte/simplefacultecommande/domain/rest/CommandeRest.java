@@ -133,6 +133,11 @@ public class CommandeRest {
         return commandeSourceService.findByRefCommandeAndRefEntite(refCommande, refEntite);
     }
     
+    @PostMapping("/commandeSources")
+    public List<CommandeSourceVo> findCommandeSourcesByCommandeItem(@RequestBody CommandeItem commandeItem) {
+        return commandeSourceConverter.toVo(commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem)) ;
+    }
+    
     
     
 
