@@ -23,24 +23,23 @@ import javax.persistence.OneToMany;
 @Entity
 public class CommandeItem implements Serializable {
 
-   
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String referenceProduit;
-    private int qte;
     private double prix;
+    private int qte;
+    private int qteAffecte;
     private int qteReception;
     @ManyToOne
     private Commande commande;
-     @OneToMany(mappedBy = "commandeItem")
+    @OneToMany(mappedBy = "commandeItem")
     private List<CommandeSource> commandeSources;
 
     public CommandeItem() {
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -48,10 +47,12 @@ public class CommandeItem implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     //@JsonIgnore
     public List<CommandeSource> getCommandeSources() {
         return commandeSources;
     }
+
     //@JsonSetter
     public void setCommandeSources(List<CommandeSource> commandeSources) {
         this.commandeSources = commandeSources;
@@ -96,7 +97,17 @@ public class CommandeItem implements Serializable {
     public void setCommande(Commande commande) {
         this.commande = commande;
     }
+
+    public int getQteAffecte() {
+        return qteAffecte;
+    }
+
+    public void setQteAffecte(int qteAffecte) {
+        this.qteAffecte = qteAffecte;
+    }
     
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,5 +132,5 @@ public class CommandeItem implements Serializable {
     public String toString() {
         return "com.faculte.facultecommande.bean.CommandeItem[ id=" + id + " ]";
     }
-    
+
 }

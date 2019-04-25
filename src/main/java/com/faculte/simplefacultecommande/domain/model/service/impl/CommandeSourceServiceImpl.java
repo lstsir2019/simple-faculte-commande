@@ -37,24 +37,30 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
 
     @Override
     public int create(CommandeSource commandeSource) {
+        CommandeItem cit = commandeItemDao.getOne(commandeSource.getCommandeItem().getId());
+        System.out.println("ste deja aff ==>  " +cit.getQteAffecte() );
         ExpressionBesoinItemVo expressionBesoinItemVo = expressionBesoinProxy.findById(commandeSource.getReferenceExpressionBesoinItem());
         if (expressionBesoinItemVo == null) {
             return -1;
         } else {
-
             int qteAccorder = NumberUtil.toInt(expressionBesoinItemVo.getQuantiteAccorder());
             int qteCommander = NumberUtil.toInt(expressionBesoinItemVo.getQuantiteCommander());
             if (commandeSource.getQteAffecte() > qteAccorder - qteCommander) {
                 return -2;
             } else if (!commandeSource.getCommandeItem().getReferenceProduit().equals(expressionBesoinItemVo.getReferenceProduit())) {
                 return -3;
-            } else {
-                
+            }else if (commandeSource.getQteAffecte() > cit.getQte() - cit.getQteAffecte()) {
+                return -5;
+            }  else {
+
                 int res = expressionBesoinProxy.incrementQteCommande(commandeSource.getReferenceExpressionBesoinItem(), commandeSource.getQteAffecte());
                 if (res < 0) {
                     return -4;
                 } else {
                     commandeSource.setQteLivre(0);
+                    CommandeItem ci = commandeItemDao.getOne(commandeSource.getCommandeItem().getId());
+                    ci.setQteAffecte(ci.getQteAffecte()+commandeSource.getQteAffecte());
+                    commandeItemDao.save(ci);
                     commandeSourceDao.save(commandeSource);
                     return 1;
                 }
@@ -117,8 +123,25 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
         }
 
     }
-    
-    
+
+    @Override
+    public int delete(CommandeSource commandeSource) {
+        boolean exist = commandeSourceDao.existsById(commandeSource.getId());
+        if (!exist) {
+            return -1;
+        } else {
+            CommandeSource cs = commandeSourceDao.getOne(commandeSource.getId());
+            if (cs.getQteLivre() != 0) {
+                return -2;
+            } else {
+                expressionBesoinProxy.decrementQteCommande(cs.getReferenceExpressionBesoinItem(), cs.getQteAffecte());
+                commandeSourceDao.deleteById(commandeSource.getId());
+                return 1;
+            }
+
+        }
+    }
+
     @Override
     public List<CommandeSource> findCommandeSourcesByCommandeItem(CommandeItem commandeItem) {
         return commandeSourceDao.findByCommandeItem(commandeItem);
@@ -139,6 +162,5 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
     public void setCommandeSourceDao(CommandeSourceDao commandeSourceDao) {
         this.commandeSourceDao = commandeSourceDao;
     }
-
 
 }

@@ -17,6 +17,7 @@ public class CommandeItemVo {
     private String referenceProduit;
     private String qte;
     private String prix;
+    public String qteAffecte;
     private String qteReception;
     private String referenceCommande;
     private CommandeVo commandeVo;
@@ -84,6 +85,14 @@ public class CommandeItemVo {
 
     public void setReferenceCommande(String referenceCommande) {
         this.referenceCommande = referenceCommande;
+    }
+
+    public String getQteAffecte() {
+        return qteAffecte;
+    }
+
+    public void setQteAffecte(String qteAffecte) {
+        this.qteAffecte = qteAffecte;
     }
     
     

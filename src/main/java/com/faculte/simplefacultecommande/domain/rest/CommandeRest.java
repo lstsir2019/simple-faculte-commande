@@ -137,6 +137,11 @@ public class CommandeRest {
     public List<CommandeSourceVo> findCommandeSourcesByCommandeItem(@RequestBody CommandeItem commandeItem) {
         return commandeSourceConverter.toVo(commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem)) ;
     }
+
+    @DeleteMapping("/commandeSource")
+    public int delete(@RequestBody CommandeSource commandeSource) {
+        return commandeSourceService.delete(commandeSource);
+    }
     
     
     

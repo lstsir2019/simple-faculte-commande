@@ -29,6 +29,7 @@ public class CommandeItemConverter extends AbstractConverter<CommandeItem, Comma
             item.setReferenceProduit(vo.getReferenceProduit());
             item.setPrix(NumberUtil.toDecimal(vo.getPrix()));
             item.setQte( NumberUtil.toInt(vo.getQte()));
+            item.setQteAffecte(NumberUtil.toInt(vo.getQteAffecte()));
             item.setQteReception(NumberUtil.toInt(vo.getQteReception()));
             
             return item;
@@ -44,6 +45,7 @@ public class CommandeItemConverter extends AbstractConverter<CommandeItem, Comma
            vo.setId(item.getId());
            vo.setPrix(NumberUtil.toString(item.getPrix()));
            vo.setQte(NumberUtil.intToString(item.getQte()));
+           vo.setQteAffecte(NumberUtil.intToString(item.getQteAffecte()));
            vo.setQteReception(NumberUtil.intToString(item.getQteReception()));
            vo.setReferenceProduit(item.getReferenceProduit());
            return vo;
