@@ -20,6 +20,7 @@ public class ExpressionBesoinItemVo {
     private String description;
     private String quantiteLivre;
     ExpressionBesoinVo expressionBesoinVo;
+    private String entityAdmin;
 
     public Long getId() {
         return id;
@@ -91,6 +92,14 @@ public class ExpressionBesoinItemVo {
 
     public void setExpressionBesoinVo(ExpressionBesoinVo expressionBesoinVo) {
         this.expressionBesoinVo = expressionBesoinVo;
+    }
+
+    public String getEntityAdmin() {
+        return entityAdmin;
+    }
+
+    public void setEntityAdmin(String entityAdmin) {
+        this.entityAdmin = entityAdmin;
     }
     
     

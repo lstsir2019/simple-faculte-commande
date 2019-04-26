@@ -135,12 +135,16 @@ public class CommandeRest {
     
     @PostMapping("/commandeSources")
     public List<CommandeSourceVo> findCommandeSourcesByCommandeItem(@RequestBody CommandeItem commandeItem) {
-        return commandeSourceConverter.toVo(commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem)) ;
+        List<CommandeSourceVo> res = commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem) ;
+        for (CommandeSourceVo re : res) {
+            re.setCommandeItemVo(commandeItemConverter.toVo(commandeItem));
+        }
+        return res;
     }
 
-    @DeleteMapping("/commandeSource")
-    public int delete(@RequestBody CommandeSource commandeSource) {
-        return commandeSourceService.delete(commandeSource);
+    @DeleteMapping("/commandeSource/{id}")
+    public int delete(@PathVariable Long id) {
+        return commandeSourceService.delete(id);
     }
     
     

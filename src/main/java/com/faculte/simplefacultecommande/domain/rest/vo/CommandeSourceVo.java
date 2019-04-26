@@ -15,6 +15,8 @@ public class CommandeSourceVo {
     private CommandeItemVo commandeItemVo;
     private String referenceExpressionBesoinItem;
     private String qteAffecte;
+    private String qteLivre;
+    private String entityAdmin;
 
     public Long getId() {
         return id;
@@ -48,7 +50,23 @@ public class CommandeSourceVo {
         this.qteAffecte = qteAffecte;
     }
 
-  
+    public String getEntityAdmin() {
+        return entityAdmin;
+    }
+
+    public void setEntityAdmin(String entityAdmin) {
+        this.entityAdmin = entityAdmin;
+    }
+
+    public String getQteLivre() {
+        return qteLivre;
+    }
+
+    public void setQteLivre(String qteLivre) {
+        this.qteLivre = qteLivre;
+    }
+
+    
     
     
 }
