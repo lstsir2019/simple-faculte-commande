@@ -6,6 +6,7 @@
 package com.faculte.simplefacultecommande.domain.rest;
 
 import com.faculte.simplefacultecommande.commun.util.DateUtil;
+import com.faculte.simplefacultecommande.commun.util.GeneratePdf;
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import com.faculte.simplefacultecommande.domain.bean.CommandeItem;
 import com.faculte.simplefacultecommande.domain.bean.CommandeSource;
@@ -21,10 +22,16 @@ import com.faculte.simplefacultecommande.domain.rest.vo.CommandeSourceWithProdui
 import com.faculte.simplefacultecommande.domain.rest.vo.CommandeVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.CategorieProduitVo;
 import com.faculte.simplefacultecommande.domain.rest.vo.exchange.ProduitVo;
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.ws.rs.Produces;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,14 +57,14 @@ public class CommandeRest {
 
     @Autowired
     private CommandeItemService commandeItemService;
-    
+
     @Autowired
     private ProduitProxy produitProxy;
 
     @Autowired
     @Qualifier("commandeConverter")
     private AbstractConverter<Commande, CommandeVo> commandeConverter;
-    
+
     @Autowired
     @Qualifier("commandeSourceConverter")
     private AbstractConverter<CommandeSource, CommandeSourceVo> commandeSourceConverter;
@@ -92,21 +99,16 @@ public class CommandeRest {
     public int deleteByReference(@PathVariable String reference) {
         return commandeService.deleteByReference(reference);
     }
-    
+
     @PostMapping("/commandeSource")
     public int create(@RequestBody CommandeSourceVo commandeSourceVo) {
-        return  commandeSourceService.create(commandeSourceConverter.toItem(commandeSourceVo));
+        return commandeSourceService.create(commandeSourceConverter.toItem(commandeSourceVo));
     }
-    
-    
 
-    
-    
 //    @GetMapping("/faculte-besoin/item/produit/{referenceProduit}")
 //    public List<ExpressionBesoinItemVo> findByProduit(@PathVariable String referenceProduit) {
 //        return commandeSourceService.findByProduit(referenceProduit);
 //    }
-
     @PostMapping("/chercherCommande")
     public List<CommandeVo> chercherCommande(@RequestBody CommandeVo commandeVO) {
         Date datemn = DateUtil.parse(commandeVO.getDateMin());
@@ -124,18 +126,20 @@ public class CommandeRest {
     public List<CategorieProduitVo> findAllCategorieProduit() {
         return produitProxy.findAllCategorier();
     }
+
     @GetMapping("/produits/libelle/{libelle}")
-    public List<ProduitVo> findByCategorieProduitLibelle(@PathVariable String libelle){
+    public List<ProduitVo> findByCategorieProduitLibelle(@PathVariable String libelle) {
         return produitProxy.findByCategorieProduitLibelle(libelle);
     }
+
     @GetMapping("/commande/{refCommande}/entity/{refEntite}")
-    public List<CommandeSourceWithProduit> findByRefCommandeAndRefEntite(@PathVariable String refCommande,@PathVariable String refEntite) {
+    public List<CommandeSourceWithProduit> findByRefCommandeAndRefEntite(@PathVariable String refCommande, @PathVariable String refEntite) {
         return commandeSourceService.findByRefCommandeAndRefEntite(refCommande, refEntite);
     }
-    
+
     @PostMapping("/commandeSources")
     public List<CommandeSourceVo> findCommandeSourcesByCommandeItem(@RequestBody CommandeItem commandeItem) {
-        List<CommandeSourceVo> res = commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem) ;
+        List<CommandeSourceVo> res = commandeSourceService.findCommandeSourcesByCommandeItem(commandeItem);
         for (CommandeSourceVo re : res) {
             re.setCommandeItemVo(commandeItemConverter.toVo(commandeItem));
         }
@@ -146,9 +150,20 @@ public class CommandeRest {
     public int delete(@PathVariable Long id) {
         return commandeSourceService.delete(id);
     }
-    
-    
-    
+
+    @GetMapping("/pdf/reference/{reference}")
+    public ResponseEntity<Object> report(@PathVariable String reference) throws JRException, IOException {
+        Commande c = commandeService.findByReference(reference);
+        
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fournisseur", c.getFournisseur().getLibelle());
+        parameters.put("reference", c.getReference());
+        parameters.put("date", c.getDateCommande());
+        parameters.put("total", c.getTotal());
+        
+
+        return GeneratePdf.generate("commande", parameters, commandeItemService.findByCommandeReference(reference), "/reports/commande.jasper");
+    }
 
     public CommandeService getCommandeService() {
         return commandeService;
