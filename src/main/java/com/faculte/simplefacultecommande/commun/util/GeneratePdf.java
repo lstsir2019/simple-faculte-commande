@@ -17,6 +17,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import static org.hibernate.internal.util.ConfigHelper.getResourceAsStream;
+import org.jfree.util.Log;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -38,6 +39,7 @@ public class GeneratePdf {
         JRDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperReportsUtils.renderAsPdf(report, params, dataSource, pos);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(pdfFile));
+        Log.info(String.format("Invoice pdf path : %s", pdfFile.getAbsolutePath()));
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", pdfFile.getName()));
         headers.add("Cache-Control", "no-cache, no-store, must-revalidate");

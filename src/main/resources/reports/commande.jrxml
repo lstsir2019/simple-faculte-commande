@@ -1,29 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c972a7c0-cf34-4cea-beaf-22ec9b3a4005">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.Long"/>
+	<parameter name="reference" class="java.lang.String"/>
+	<parameter name="date" class="java.util.Date"/>
+	<parameter name="fournisseur" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.Double"/>
+	<field name="referenceProduit" class="java.lang.String"/>
+	<field name="prix" class="java.lang.Double"/>
+	<field name="qte" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="138" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="228" y="0" width="59" height="58" uuid="ba5586ae-cc11-498b-b566-57382a0654fc"/>
+				<imageExpression><![CDATA["C:\\Users\\ismail\\Desktop\\index.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="108" y="58" width="287" height="24" uuid="39dffcb3-dadf-40d2-951a-d133f6406749"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Faculté des Sciences et Techniques]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="93" width="83" height="24" forecolor="#666666" uuid="5a5929a0-6fb6-4887-b320-05c3e38ae5e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Commande ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="-22" y="93" width="417" height="24" isRemoveLineWhenBlank="true" forecolor="#F0F0F0" backcolor="#FF9900" uuid="e2333a09-5f6f-4c25-aac9-df9a47f275f7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="478" y="93" width="106" height="24" isRemoveLineWhenBlank="true" forecolor="#F0F0F0" backcolor="#FF9900" uuid="a1b0a4f6-fb8f-4e16-b670-bea8b5c0369b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-22" y="93" width="16" height="24" forecolor="#F0F0F0" backcolor="#666666" uuid="d7e8668d-19fb-4660-b01d-5e07ad7e80a7"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="277" y="0" width="118" height="20" uuid="e7c4b260-6339-4601-90b4-14c921df8a13"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{reference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="0" width="110" height="20" uuid="8e4cd766-fcd3-4ba7-84a1-d15c4b23ae8f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{fournisseur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="0" width="77" height="20" uuid="afbd1fb9-061a-4eb3-b85f-34e8ca4e6b6f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fournisseur :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="69" height="20" uuid="b2bcd998-b02b-4d97-bf28-9bf76eccfdf2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reference :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="36" height="20" uuid="1015d73d-b4d5-4b2d-a3f2-81208f881e2e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="0" width="106" height="20" uuid="d14b56e2-b687-4ebb-ab66-dc947a4778de"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="226" height="20" forecolor="#666666" backcolor="#FF9900" uuid="3336b871-797d-4bfe-a593-441067f29251"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[referenceProduit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="365" y="0" width="190" height="20" forecolor="#666666" backcolor="#FF9900" uuid="6139b9f7-ecb9-4fae-8729-98e0ea775d09"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[prix]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="226" y="0" width="139" height="20" forecolor="#666666" backcolor="#FF9900" uuid="8152dd6c-f045-447e-8b1f-0b81f3fb0504"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[qte]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="0" y="0" width="226" height="20" uuid="46e58db1-ddeb-4999-8e6d-e5caf80bd4be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{referenceProduit}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="365" y="0" width="190" height="20" uuid="be1d79c8-6b5c-471a-b27e-4b85c0872416"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{prix}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="226" y="0" width="139" height="20" uuid="88970380-86af-467a-a13c-12489c06a58d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{qte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="365" y="14" width="71" height="20" forecolor="#FFFFFF" backcolor="#666666" uuid="b99d1c75-07f3-4dbf-8683-b1a398922077"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total ]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="436" y="14" width="100" height="20" forecolor="#FFFFFF" backcolor="#FF9900" uuid="4edeb12e-b38c-4755-80f6-b6ab732453fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="336" y="50" width="100" height="20" uuid="bd4b8cb2-85fb-4290-a069-3e74e2e584ad"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="555" height="20" uuid="6c409674-ad3f-4070-a445-6632c2f866b0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ Faculté des Sciences et Techniques]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="555" height="45" uuid="123dc157-ef97-45be-bd54-76c941e6cca9"/>
+				<textElement textAlignment="Center">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[ B.P 549, Av.Abdelkarim Elkhattabi, Guéliz Marrakech
+  Tél : (+212) 524 43 34 04  Fax: (+212) 524 43 31 70 ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="-22" y="0" width="22" height="6" forecolor="#F0F0F0" backcolor="#666666" uuid="6789a0a8-0bc7-4fa5-98cc-d9834ab2806f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="584" height="6" isRemoveLineWhenBlank="true" forecolor="#F0F0F0" backcolor="#FF9900" uuid="5419cb21-6000-4dd2-a91e-9114a8a00a3b"/>
+			</rectangle>
+		</band>
+	</pageFooter>
 </jasperReport>

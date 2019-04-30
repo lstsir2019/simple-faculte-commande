@@ -152,7 +152,7 @@ public class CommandeRest {
     }
 
     @GetMapping("/pdf/reference/{reference}")
-    public ResponseEntity<Object> report(@PathVariable String reference) throws JRException, IOException {
+    public ResponseEntity<Object> CommandePrint(@PathVariable String reference) throws JRException, IOException {
         Commande c = commandeService.findByReference(reference);
         
         Map<String, Object> parameters = new HashMap<>();
@@ -160,6 +160,7 @@ public class CommandeRest {
         parameters.put("reference", c.getReference());
         parameters.put("date", c.getDateCommande());
         parameters.put("total", c.getTotal());
+        parameters.put("id", c.getId());
         
 
         return GeneratePdf.generate("commande", parameters, commandeItemService.findByCommandeReference(reference), "/reports/commande.jasper");
