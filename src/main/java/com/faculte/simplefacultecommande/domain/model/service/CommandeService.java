@@ -14,11 +14,16 @@ import java.util.List;
  * @author mohcine
  */
 public interface CommandeService {
-    
+
     public int saveCommande(Commande commande);
+
     public Commande findByReference(String reference);
+
     public List<Commande> findAllCommande();
+
     public int deleteByReference(String reference);
-    public List<Commande> chercherCommande(String reference,Date dateMax,Date dateMin);
+
+    public List<Commande> chercherCommande(String reference, Date dateMax, Date dateMin);
+    
 
 }

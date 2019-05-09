@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -154,14 +155,13 @@ public class CommandeRest {
     @GetMapping("/pdf/reference/{reference}")
     public ResponseEntity<Object> CommandePrint(@PathVariable String reference) throws JRException, IOException {
         Commande c = commandeService.findByReference(reference);
-        
+
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("fournisseur", c.getFournisseur().getLibelle());
         parameters.put("reference", c.getReference());
         parameters.put("date", c.getDateCommande());
         parameters.put("total", c.getTotal());
         parameters.put("id", c.getId());
-        
 
         return GeneratePdf.generate("commande", parameters, commandeItemService.findByCommandeReference(reference), "/reports/commande.jasper");
     }

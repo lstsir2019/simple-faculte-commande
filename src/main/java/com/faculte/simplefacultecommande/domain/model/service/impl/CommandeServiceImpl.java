@@ -87,14 +87,14 @@ public class CommandeServiceImpl implements CommandeService {
         } else {
             List<CommandeItem> commandeItems = commandeItemService.getCommandeItems(commande);
             for (CommandeItem commandeItem : commandeItems) {
-                commandeItemService.deletItem(commandeItem);
+                commandeItemService.deletItem(commandeItem.getId());
             }
             commandeDao.delete(commande);
             return 1;
         }
 
     }
-
+    
     @Override
     public List<Commande> findAllCommande() {
         return commandeDao.findAll();
@@ -139,6 +139,8 @@ public class CommandeServiceImpl implements CommandeService {
     public void setCommandeService(CommandeService commandeService) {
         this.commandeService = commandeService;
     }
+
+    
     
     
 

@@ -16,10 +16,6 @@
 	</background>
 	<title>
 		<band height="138" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="228" y="0" width="59" height="58" uuid="ba5586ae-cc11-498b-b566-57382a0654fc"/>
-				<imageExpression><![CDATA["C:\\Users\\ismail\\Desktop\\index.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="108" y="58" width="287" height="24" uuid="39dffcb3-dadf-40d2-951a-d133f6406749"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

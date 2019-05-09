@@ -19,9 +19,8 @@ public interface CommandeItemService {
     public int saveCommandeItems(Commande commande,List<CommandeItem> commandeItems);
     public List<CommandeItem> findByCommandeReference(String reference);
     public List<CommandeItem> getCommandeItems(Commande commande);
-    public int deletItem(CommandeItem commandeItem);
+    public int deletItem(Long id);
     public int incrementQteReception(CommandeItemVo commandeItem);
-    
-    
-
+    public int updateItem(Long id,int qte,double prix);
+  
 }
