@@ -32,7 +32,7 @@ public class CommandeServiceImpl implements CommandeService {
 
     @Autowired
     CommandeService commandeService;
-    
+
     @Autowired
     CommandeCHerche commandeCHerche;
 
@@ -45,24 +45,21 @@ public class CommandeServiceImpl implements CommandeService {
         System.out.println("hhhhhhhhhhhh" + fournisseur.getLibelle());
         if (fournisseur == null) {
             return -1;
-        }else if (commandeService.findByReference(commande.getReference())!=null || commande.getReference().equals("")) {
+        } else if (commandeService.findByReference(commande.getReference()) != null || commande.getReference().equals("")) {
             return -2;
         }
-            calculerTotal(commande, commande.getCommandeItems());
-            commande.setFournisseur(fournisseur);
-            commandeDao.save(commande);
-            commandeItemService.saveCommandeItems(commande, commande.getCommandeItems());
-            return 1;
-        
+        calculerTotal(commande, commande.getCommandeItems());
+        commande.setFournisseur(fournisseur);
+        commandeDao.save(commande);
+        commandeItemService.saveCommandeItems(commande, commande.getCommandeItems());
+        return 1;
+
     }
 
     @Override
     public List<Commande> chercherCommande(String reference, Date dateMax, Date dateMin) {
         return commandeCHerche.chercherCommande(reference, dateMax, dateMin);
     }
-
-    
-    
 
     @Override
     public Commande findByReference(String reference) {
@@ -94,11 +91,18 @@ public class CommandeServiceImpl implements CommandeService {
         }
 
     }
-    
+
     @Override
     public List<Commande> findAllCommande() {
         return commandeDao.findAll();
     }
+    
+    @Override
+    public Commande findByReferenceOffre(String referenceOffre) {
+            return commandeDao.findByReferenceOffre(referenceOffre);
+    }
+
+    
 
     public CommandeItemService getCommandeItemService() {
         return commandeItemService;
@@ -140,8 +144,6 @@ public class CommandeServiceImpl implements CommandeService {
         this.commandeService = commandeService;
     }
 
-    
-    
     
 
 }

@@ -29,9 +29,9 @@ public class CommandeItem implements Serializable {
     private Long id;
     private String referenceProduit;
     private double prix;
-    private int qte;
-    private int qteAffecte;
-    private int qteReception;
+    private double qte;
+    private double qteAffecte;
+    private double qteReception;
     @ManyToOne
     private Commande commande;
     @OneToMany(mappedBy = "commandeItem")
@@ -66,11 +66,11 @@ public class CommandeItem implements Serializable {
         this.referenceProduit = referenceProduit;
     }
 
-    public int getQte() {
+    public double getQte() {
         return qte;
     }
 
-    public void setQte(int qte) {
+    public void setQte(double qte) {
         this.qte = qte;
     }
 
@@ -82,11 +82,11 @@ public class CommandeItem implements Serializable {
         this.prix = prix;
     }
 
-    public int getQteReception() {
+    public double getQteReception() {
         return qteReception;
     }
 
-    public void setQteReception(int qteReception) {
+    public void setQteReception(double qteReception) {
         this.qteReception = qteReception;
     }
 
@@ -98,11 +98,11 @@ public class CommandeItem implements Serializable {
         this.commande = commande;
     }
 
-    public int getQteAffecte() {
+    public double getQteAffecte() {
         return qteAffecte;
     }
 
-    public void setQteAffecte(int qteAffecte) {
+    public void setQteAffecte(double qteAffecte) {
         this.qteAffecte = qteAffecte;
     }
     

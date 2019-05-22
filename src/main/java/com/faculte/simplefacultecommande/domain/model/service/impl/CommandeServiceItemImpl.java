@@ -84,7 +84,7 @@ public class CommandeServiceItemImpl implements CommandeItemService {
     }
 
     @Override
-    public int updateItem(Long id, int qte, double prix) {
+    public int updateItem(Long id, double qte, double prix) {
         CommandeItem ci = commandeItemDao.getOne(id);
         if (ci == null) {
             return -1;
@@ -114,7 +114,7 @@ public class CommandeServiceItemImpl implements CommandeItemService {
         if (NumberUtil.toInt(commandeItem.getQteReception()) > ci.getQte() - ci.getQteReception()) {
             return -1;
         } else {
-            ci.setQteReception(ci.getQteReception() + NumberUtil.toInt(commandeItem.getQteReception()));
+            ci.setQteReception(ci.getQteReception() + NumberUtil.toDecimal(commandeItem.getQteReception()));
             commandeItemDao.save(ci);
             return 1;
         }

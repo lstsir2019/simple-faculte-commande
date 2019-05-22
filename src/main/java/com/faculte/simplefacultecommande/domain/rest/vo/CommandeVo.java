@@ -14,6 +14,7 @@ import java.util.List;
 public class CommandeVo {
      private Long id;
     private String reference;
+    private String referenceOffre;
     private String total;
     private String totalPaiement;
     private String dateCommande;
@@ -103,6 +104,15 @@ public class CommandeVo {
         this.dateMin = dateMin;
     }
 
+    public String getReferenceOffre() {
+        return referenceOffre;
+    }
+
+    public void setReferenceOffre(String referenceOffre) {
+        this.referenceOffre = referenceOffre;
+    }
+
+    
     
 
    

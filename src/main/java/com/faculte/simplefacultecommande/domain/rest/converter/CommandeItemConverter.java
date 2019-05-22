@@ -28,9 +28,9 @@ public class CommandeItemConverter extends AbstractConverter<CommandeItem, Comma
             item.setId(vo.getId());
             item.setReferenceProduit(vo.getReferenceProduit());
             item.setPrix(NumberUtil.toDecimal(vo.getPrix()));
-            item.setQte( NumberUtil.toInt(vo.getQte()));
-            item.setQteAffecte(NumberUtil.toInt(vo.getQteAffecte()));
-            item.setQteReception(NumberUtil.toInt(vo.getQteReception()));
+            item.setQteAffecte(NumberUtil.toDecimal(vo.getQteAffecte()));
+            item.setQteReception(NumberUtil.toDecimal(vo.getQteReception()));
+            item.setQte(NumberUtil.toDecimal(vo.getQte()));
             
             return item;
         }
@@ -44,9 +44,9 @@ public class CommandeItemConverter extends AbstractConverter<CommandeItem, Comma
            CommandeItemVo vo=new CommandeItemVo();
            vo.setId(item.getId());
            vo.setPrix(NumberUtil.toString(item.getPrix()));
-           vo.setQte(NumberUtil.intToString(item.getQte()));
-           vo.setQteAffecte(NumberUtil.intToString(item.getQteAffecte()));
-           vo.setQteReception(NumberUtil.intToString(item.getQteReception()));
+           vo.setQte(NumberUtil.toString(item.getQte()));
+           vo.setQteAffecte(NumberUtil.toString(item.getQteAffecte()));
+           vo.setQteReception(NumberUtil.toString(item.getQteReception()));
            vo.setReferenceProduit(item.getReferenceProduit());
            return vo;
         }

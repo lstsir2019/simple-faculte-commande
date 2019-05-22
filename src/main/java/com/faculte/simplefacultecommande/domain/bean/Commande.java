@@ -30,6 +30,7 @@ public class Commande implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reference;
+    private String referenceOffre;
     private double total;
     private double totalPaiement;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -101,6 +102,16 @@ public class Commande implements Serializable {
     public void setFournisseur(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
     }
+
+    public String getReferenceOffre() {
+        return referenceOffre;
+    }
+
+    public void setReferenceOffre(String referenceOffre) {
+        this.referenceOffre = referenceOffre;
+    }
+    
+    
      
     @JsonIgnore
     public List<CommandeItem> getCommandeItems() {

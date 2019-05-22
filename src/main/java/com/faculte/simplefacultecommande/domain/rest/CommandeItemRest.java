@@ -57,7 +57,7 @@ public class CommandeItemRest {
     }
 
     @PutMapping("/update/id/{id}/qte/{qte}/prix/{prix}")
-    public int updateItem(@PathVariable Long id,@PathVariable int qte,@PathVariable double prix) {
+    public int updateItem(@PathVariable Long id,@PathVariable double qte,@PathVariable double prix) {
         return commandeItemService.updateItem(id, qte, prix);
     }
     

@@ -54,7 +54,7 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
                 return -5;
             } else {
 
-                int res = expressionBesoinProxy.incrementQteCommande(commandeSource.getReferenceExpressionBesoinItem(), commandeSource.getQteAffecte());
+                int res = expressionBesoinProxy.incrementQteCommande(commandeSource.getReferenceExpressionBesoinItem(), (int) commandeSource.getQteAffecte());
                 if (res < 0) {
                     return -4;
                 } else {
@@ -88,10 +88,10 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
         for (CommandeSource re : res) {
             ExpressionBesoinItemVo exp = expressionBesoinProxy.findById(re.getReferenceExpressionBesoinItem());
             CommandeSourceWithProduit cswp = new CommandeSourceWithProduit();
-            int qteAff = re.getQteAffecte();
-            int qteLivre = re.getQteLivre();
-            int qteNonLivre = qteAff - qteLivre;
-            cswp.setQteNonLivre(NumberUtil.intToString(qteNonLivre));
+            double qteAff = re.getQteAffecte();
+            double qteLivre = re.getQteLivre();
+            double qteNonLivre = qteAff - qteLivre;
+            cswp.setQteNonLivre(NumberUtil.toString(qteNonLivre));
             cswp.setReferenceProduit(exp.getReferenceProduit());
             cswp.setReferenceCommandeExpression(NumberUtil.LongToString(re.getId()));
             fin.add(cswp);
@@ -135,7 +135,7 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
             if (cs.getQteLivre() != 0) {
                 return -2;
             } else {
-                expressionBesoinProxy.decrementQteCommande(cs.getReferenceExpressionBesoinItem(), cs.getQteAffecte());
+                expressionBesoinProxy.decrementQteCommande(cs.getReferenceExpressionBesoinItem(), (int) cs.getQteAffecte());
                 CommandeItem ci = commandeItemDao.getOne(cs.getCommandeItem().getId());
                 ci.setQteAffecte(ci.getQteAffecte()-cs.getQteAffecte());
                 commandeItemDao.save(ci);
@@ -154,8 +154,8 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
             CommandeSourceVo csv = new CommandeSourceVo();
             csv.setId(c.getId());
             csv.setReferenceExpressionBesoinItem(NumberUtil.LongToString(c.getReferenceExpressionBesoinItem()));
-            csv.setQteAffecte(NumberUtil.intToString(c.getQteAffecte()));
-            csv.setQteLivre(NumberUtil.intToString(c.getQteLivre()));
+            csv.setQteAffecte(NumberUtil.toString(c.getQteAffecte()));
+            csv.setQteLivre(NumberUtil.toString(c.getQteLivre()));
             ExpressionBesoinItemVo ebiv = expressionBesoinProxy.findById(c.getReferenceExpressionBesoinItem());
             
             csv.setEntityAdmin(ebiv.getEntityAdmin());

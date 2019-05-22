@@ -166,6 +166,13 @@ public class CommandeRest {
         return GeneratePdf.generate("commande", parameters, commandeItemService.findByCommandeReference(reference), "/reports/commande.jasper");
     }
 
+    @GetMapping("/referenceOffre/{referenceOffre}")
+    public CommandeVo findByReferenceOffre(String referenceOffre) {
+        return commandeConverter.toVo(commandeService.findByReferenceOffre(referenceOffre));
+    }
+    
+    
+
     public CommandeService getCommandeService() {
         return commandeService;
     }

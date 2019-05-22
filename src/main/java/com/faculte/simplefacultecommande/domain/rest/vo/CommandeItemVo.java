@@ -12,8 +12,8 @@ import java.util.List;
  * @author mohcine
  */
 public class CommandeItemVo {
-    
-     private Long id;
+
+    private Long id;
     private String referenceProduit;
     private String qte;
     private String prix;
@@ -94,7 +94,5 @@ public class CommandeItemVo {
     public void setQteAffecte(String qteAffecte) {
         this.qteAffecte = qteAffecte;
     }
-    
-    
-    
+
 }

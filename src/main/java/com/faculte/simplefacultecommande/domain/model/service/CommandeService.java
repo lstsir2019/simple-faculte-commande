@@ -25,5 +25,7 @@ public interface CommandeService {
 
     public List<Commande> chercherCommande(String reference, Date dateMax, Date dateMin);
     
+    public Commande findByReferenceOffre(String referenceOffre);
+    
 
 }

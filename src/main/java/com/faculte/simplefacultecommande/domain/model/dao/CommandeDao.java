@@ -7,6 +7,7 @@ package com.faculte.simplefacultecommande.domain.model.dao;
 
 import com.faculte.simplefacultecommande.domain.bean.Commande;
 import java.util.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommandeDao extends JpaRepository<Commande, Long>{
     public Commande findByReference(String reference);
+    public Commande findByReferenceOffre(String referenceOffre);
     
     
 }

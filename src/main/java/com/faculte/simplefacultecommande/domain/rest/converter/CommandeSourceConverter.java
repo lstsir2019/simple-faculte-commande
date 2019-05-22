@@ -25,7 +25,8 @@ public class CommandeSourceConverter extends AbstractConverter<CommandeSource, C
         }else{
              CommandeSource item=new CommandeSource();
              item.setId(vo.getId());
-             item.setQteAffecte(NumberUtil.toInt(vo.getQteAffecte()));
+             item.setQteAffecte(NumberUtil.toDecimal(vo.getQteAffecte()));
+             item.setQteLivre(NumberUtil.toDecimal(vo.getQteLivre()));
              item.setReferenceExpressionBesoinItem(NumberUtil.StringtoLong(vo.getReferenceExpressionBesoinItem()));
              item.setCommandeItem(new CommandeItemConverter().toItem(vo.getCommandeItemVo()));
              return item;
@@ -39,7 +40,8 @@ public class CommandeSourceConverter extends AbstractConverter<CommandeSource, C
         }else{
             CommandeSourceVo vo=new CommandeSourceVo();
             vo.setId(item.getId());
-            vo.setQteAffecte(NumberUtil.intToString(item.getQteAffecte()));
+            vo.setQteAffecte(NumberUtil.toString(item.getQteAffecte()));
+             vo.setQteLivre(NumberUtil.toString(item.getQteLivre()));
             vo.setReferenceExpressionBesoinItem(NumberUtil.LongToString(item.getReferenceExpressionBesoinItem()));
             vo.setCommandeItemVo(new CommandeItemConverter().toVo(item.getCommandeItem()));
             return vo;

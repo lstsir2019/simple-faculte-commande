@@ -26,8 +26,8 @@ public class CommandeSource implements Serializable {
     @ManyToOne
     private CommandeItem commandeItem;
     private Long referenceExpressionBesoinItem;
-    private int qteAffecte;
-    private int qteLivre;
+    private double qteAffecte;
+    private double qteLivre;
 
     public CommandeSource() {
     }
@@ -59,19 +59,19 @@ public class CommandeSource implements Serializable {
 
    
 
-    public int getQteAffecte() {
+    public double getQteAffecte() {
         return qteAffecte;
     }
 
-    public void setQteAffecte(int qteAffecte) {
+    public void setQteAffecte(double qteAffecte) {
         this.qteAffecte = qteAffecte;
     }
 
-    public int getQteLivre() {
+    public double getQteLivre() {
         return qteLivre;
     }
 
-    public void setQteLivre(int qteLivre) {
+    public void setQteLivre(double qteLivre) {
         this.qteLivre = qteLivre;
     }
 

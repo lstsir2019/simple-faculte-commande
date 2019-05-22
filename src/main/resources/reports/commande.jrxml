@@ -10,7 +10,7 @@
 	<parameter name="total" class="java.lang.Double"/>
 	<field name="referenceProduit" class="java.lang.String"/>
 	<field name="prix" class="java.lang.Double"/>
-	<field name="qte" class="java.lang.Integer"/>
+	<field name="qte" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

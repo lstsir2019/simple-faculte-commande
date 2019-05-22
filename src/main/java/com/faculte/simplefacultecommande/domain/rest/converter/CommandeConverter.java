@@ -26,6 +26,7 @@ public class CommandeConverter extends AbstractConverter<Commande, CommandeVo>{
         }else{
             Commande item = new Commande();
             item.setReference(vo.getReference());
+            item.setReferenceOffre(vo.getReferenceOffre());
             item.setId(vo.getId());
             item.setTotal(NumberUtil.toDecimal(vo.getTotal()));
             item.setDateCommande(DateUtil.parse(vo.getDateCommande()));
@@ -46,6 +47,7 @@ public class CommandeConverter extends AbstractConverter<Commande, CommandeVo>{
             CommandeVo vo =new CommandeVo();
             vo.setId(item.getId());
             vo.setReference(item.getReference());
+            vo.setReferenceOffre(item.getReferenceOffre());
             vo.setTotal(NumberUtil.toString(item.getTotal()));
             vo.setTotalPaiement(NumberUtil.toString(item.getTotalPaiement()));
             vo.setCommandeItemVos(new CommandeItemConverter().toVo(item.getCommandeItems()));
