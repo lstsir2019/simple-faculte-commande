@@ -36,33 +36,35 @@ public class CommandeItemRest {
 
     @Autowired
     private CommandeItemService commandeItemService;
-    
+
     @Autowired
     private CommandeSourceService commandeSourceService;
-    
+
     //========================================= Delegate Methods =============================================
     @PutMapping("/QteReception/increment")
     public int incrementQteReception(@RequestBody CommandeItemVo commandeItemVo) {
         return commandeItemService.incrementQteReception(commandeItemVo);
     }
-    
+
+    @PutMapping("/QteReception/decrement")
+    public int decrementQteReception(@RequestBody CommandeItemVo commandeItemVo) {
+        return commandeItemService.decrementQteReception(commandeItemVo);
+    }
+
     @PutMapping("/commandeExpression/{referenceCommandeExpression}/QteLivre/{qte}/increment")
-    public int incerementQteLivre(@PathVariable String referenceCommandeExpression,@PathVariable int qte) {
+    public int incerementQteLivre(@PathVariable String referenceCommandeExpression, @PathVariable int qte) {
         return commandeSourceService.incerementQteLivre(referenceCommandeExpression, qte);
     }
-    
+
     @DeleteMapping("/deletItem/id/{id}")
     public int deletItem(@PathVariable Long id) {
         return commandeItemService.deletItem(id);
     }
 
     @PutMapping("/update/id/{id}/qte/{qte}/prix/{prix}")
-    public int updateItem(@PathVariable Long id,@PathVariable double qte,@PathVariable double prix) {
+    public int updateItem(@PathVariable Long id, @PathVariable double qte, @PathVariable double prix) {
         return commandeItemService.updateItem(id, qte, prix);
     }
-    
-    
-
 
     //======================================== GETTER AND SETTER =============================================
     public CommandeItemService getCommandeItemService() {
@@ -80,6 +82,5 @@ public class CommandeItemRest {
     public void setCommandeItemConverter(AbstractConverter<CommandeItem, CommandeItemVo> commandeItemConverter) {
         this.commandeItemConverter = commandeItemConverter;
     }
-    
-    
+
 }

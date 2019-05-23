@@ -21,6 +21,7 @@ public interface CommandeItemService {
     public List<CommandeItem> getCommandeItems(Commande commande);
     public int deletItem(Long id);
     public int incrementQteReception(CommandeItemVo commandeItem);
+    public int decrementQteReception(CommandeItemVo commandeItem);
     public int updateItem(Long id,double qte,double prix);
   
 }

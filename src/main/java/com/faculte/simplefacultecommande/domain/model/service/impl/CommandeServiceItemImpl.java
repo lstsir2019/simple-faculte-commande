@@ -95,7 +95,7 @@ public class CommandeServiceItemImpl implements CommandeItemService {
             Commande cmd = commandeService.findByReference(r);
             double x = ci.getPrix() * ci.getQte();
             double y = prix * qte;
-            cmd.setTotal(cmd.getTotal()-x+y);
+            cmd.setTotal(cmd.getTotal() - x + y);
             ci.setPrix(prix);
             ci.setQte(qte);
             commandeDao.save(cmd);
@@ -143,6 +143,22 @@ public class CommandeServiceItemImpl implements CommandeItemService {
 
     public void setCommandeService(CommandeService commandeService) {
         this.commandeService = commandeService;
+    }
+
+    @Override
+    public int decrementQteReception(CommandeItemVo commandeItem) {
+
+        CommandeItem ci = commandeItemDao.findByCommandeAndReferenceProduit(commandeDao.findByReference(commandeItem.getReferenceCommande()), commandeItem.getReferenceProduit());
+        if (ci == null) {
+            return -2;
+        }
+        if (NumberUtil.toInt(commandeItem.getQteReception()) > ci.getQteReception()) {
+            return -1;
+        } else {
+            ci.setQteReception(ci.getQteReception() - NumberUtil.toInt(commandeItem.getQteReception()));
+            commandeItemDao.save(ci);
+            return 1;
+        }
     }
 
 }
