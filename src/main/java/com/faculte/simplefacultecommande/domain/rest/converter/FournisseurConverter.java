@@ -25,8 +25,8 @@ public class FournisseurConverter extends AbstractConverter<Fournisseur, Fournis
             Fournisseur item=new Fournisseur();
             item.setId(vo.getId());
             item.setReference(vo.getReference());
-            item.setLibelle(vo.getLibelle());
-            item.setRaisonSocial(vo.getRaisonSocial());
+            item.setNumero(vo.getNumero());
+            item.setEmail(vo.getEmail());
             return item;
         }
     }
@@ -38,8 +38,8 @@ public class FournisseurConverter extends AbstractConverter<Fournisseur, Fournis
         }else{
            FournisseurVo vo=new FournisseurVo();
            vo.setId(item.getId());
-           vo.setLibelle(item.getLibelle());
-           vo.setRaisonSocial(item.getRaisonSocial());
+           vo.setNumero(item.getNumero());
+           vo.setEmail(item.getEmail());
            vo.setReference(item.getReference());
            return vo;
        }

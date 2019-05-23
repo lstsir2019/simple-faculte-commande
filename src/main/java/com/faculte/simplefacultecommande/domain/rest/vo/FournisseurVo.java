@@ -15,8 +15,8 @@ public class FournisseurVo {
     
      private Long id;
     private String reference;
-    private String libelle;
-    private String raisonSocial;
+    private String numero;
+    private String email;
     private List<CommandeVo> commandeVos;
 
     public Long getId() {
@@ -35,21 +35,23 @@ public class FournisseurVo {
         this.reference = reference;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getRaisonSocial() {
-        return raisonSocial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRaisonSocial(String raisonSocial) {
-        this.raisonSocial = raisonSocial;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    
 
     public List<CommandeVo> getCommandeVos() {
         return commandeVos;

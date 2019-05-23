@@ -29,8 +29,8 @@ public class Fournisseur implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reference;
-    private String libelle;
-    private String raisonSocial;
+    private String numero;
+    private String email;
     @OneToMany(mappedBy = "fournisseur")
     private List<Commande> commandes;
 
@@ -61,21 +61,23 @@ public class Fournisseur implements Serializable {
         this.reference = reference;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getRaisonSocial() {
-        return raisonSocial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRaisonSocial(String raisonSocial) {
-        this.raisonSocial = raisonSocial;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+   
     
     @Override
     public int hashCode() {

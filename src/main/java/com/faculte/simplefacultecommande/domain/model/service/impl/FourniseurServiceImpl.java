@@ -51,8 +51,8 @@ public class FourniseurServiceImpl implements FournisseurService {
         if (fr==null) {
             return -1;
         }else{
-            fr.setLibelle(fournisseur.getLibelle());
-            fr.setRaisonSocial(fournisseur.getRaisonSocial());
+            fr.setEmail(fournisseur.getNumero());
+            fr.setEmail(fournisseur.getEmail());
             fournisseurDao.save(fr);
             return 1;
         }

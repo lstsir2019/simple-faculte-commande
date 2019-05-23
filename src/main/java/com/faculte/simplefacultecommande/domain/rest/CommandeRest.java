@@ -157,7 +157,7 @@ public class CommandeRest {
         Commande c = commandeService.findByReference(reference);
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fournisseur", c.getFournisseur().getLibelle());
+        parameters.put("fournisseur", c.getFournisseur().getReference());
         parameters.put("reference", c.getReference());
         parameters.put("date", c.getDateCommande());
         parameters.put("total", c.getTotal());

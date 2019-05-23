@@ -42,7 +42,6 @@ public class CommandeServiceImpl implements CommandeService {
     @Override
     public int saveCommande(Commande commande) {
         Fournisseur fournisseur = fournisseurService.findByReference(commande.getFournisseur().getReference());
-        System.out.println("hhhhhhhhhhhh" + fournisseur.getLibelle());
         if (fournisseur == null) {
             return -1;
         } else if (commandeService.findByReference(commande.getReference()) != null || commande.getReference().equals("")) {
