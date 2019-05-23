@@ -55,6 +55,11 @@ public class CommandeItemRest {
     public int incerementQteLivre(@PathVariable String referenceCommandeExpression, @PathVariable int qte) {
         return commandeSourceService.incerementQteLivre(referenceCommandeExpression, qte);
     }
+    
+    @PutMapping("/commandeExpression/{referenceCommandeExpression}/QteLivre/{qte}/decrement")
+    public int decerementQteLivre(@PathVariable String referenceCommandeExpression, @PathVariable int qte) {
+        return commandeSourceService.decerementQteLivre(referenceCommandeExpression, qte);
+    }
 
     @DeleteMapping("/deletItem/id/{id}")
     public int deletItem(@PathVariable Long id) {

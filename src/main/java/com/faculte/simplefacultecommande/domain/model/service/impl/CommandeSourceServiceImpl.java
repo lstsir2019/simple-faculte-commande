@@ -126,6 +126,25 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
     }
 
     @Override
+    public int decerementQteLivre(String referenceCommandeExpression, int qte) {
+
+        Boolean exist = commandeSourceDao.existsById(NumberUtil.StringtoLong(referenceCommandeExpression));
+        if (!exist) {
+            return -1;
+        } else {
+            CommandeSource cs = commandeSourceDao.getOne(NumberUtil.StringtoLong(referenceCommandeExpression));
+            if (qte > cs.getQteLivre()) {
+                return -2;
+            } else {
+                cs.setQteLivre(cs.getQteLivre() - qte);
+                commandeSourceDao.save(cs);
+                expressionBesoinProxy.decrementQteLivre(cs.getReferenceExpressionBesoinItem(), qte);
+                return 1;
+            }
+        }
+    }
+
+    @Override
     public int delete(Long id) {
         boolean exist = commandeSourceDao.existsById(id);
         if (!exist) {
@@ -137,7 +156,7 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
             } else {
                 expressionBesoinProxy.decrementQteCommande(cs.getReferenceExpressionBesoinItem(), (int) cs.getQteAffecte());
                 CommandeItem ci = commandeItemDao.getOne(cs.getCommandeItem().getId());
-                ci.setQteAffecte(ci.getQteAffecte()-cs.getQteAffecte());
+                ci.setQteAffecte(ci.getQteAffecte() - cs.getQteAffecte());
                 commandeItemDao.save(ci);
                 commandeSourceDao.deleteById(id);
                 return 1;
@@ -157,10 +176,10 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
             csv.setQteAffecte(NumberUtil.toString(c.getQteAffecte()));
             csv.setQteLivre(NumberUtil.toString(c.getQteLivre()));
             ExpressionBesoinItemVo ebiv = expressionBesoinProxy.findById(c.getReferenceExpressionBesoinItem());
-            
+
             csv.setEntityAdmin(ebiv.getEntityAdmin());
             res.add(csv);
-            
+
         }
         return res;
     }
