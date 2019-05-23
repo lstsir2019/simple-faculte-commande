@@ -91,10 +91,12 @@ public class CommandeSourceServiceImpl implements CommandeSourceService {
             double qteAff = re.getQteAffecte();
             double qteLivre = re.getQteLivre();
             double qteNonLivre = qteAff - qteLivre;
-            cswp.setQteNonLivre(NumberUtil.toString(qteNonLivre));
-            cswp.setReferenceProduit(exp.getReferenceProduit());
-            cswp.setReferenceCommandeExpression(NumberUtil.LongToString(re.getId()));
-            fin.add(cswp);
+            if (qteNonLivre > 0) {
+                cswp.setQteNonLivre(NumberUtil.toString(qteNonLivre));
+                cswp.setReferenceProduit(exp.getReferenceProduit());
+                cswp.setReferenceCommandeExpression(NumberUtil.LongToString(re.getId()));
+                fin.add(cswp);
+            }
 
         }
 
