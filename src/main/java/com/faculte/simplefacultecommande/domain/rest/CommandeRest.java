@@ -170,8 +170,6 @@ public class CommandeRest {
     public CommandeVo findByReferenceOffre(String referenceOffre) {
         return commandeConverter.toVo(commandeService.findByReferenceOffre(referenceOffre));
     }
-    
-    
 
     public CommandeService getCommandeService() {
         return commandeService;
@@ -195,6 +193,14 @@ public class CommandeRest {
 
     public void setCommandeItemService(CommandeItemService commandeItemService) {
         this.commandeItemService = commandeItemService;
+    }
+
+    public AbstractConverter<CommandeSource, CommandeSourceVo> getCommandeSourceConverter() {
+        return commandeSourceConverter;
+    }
+
+    public void setCommandeSourceConverter(AbstractConverter<CommandeSource, CommandeSourceVo> commandeSourceConverter) {
+        this.commandeSourceConverter = commandeSourceConverter;
     }
 
     public AbstractConverter<CommandeItem, CommandeItemVo> getCommandeItemConverter() {

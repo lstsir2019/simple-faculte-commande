@@ -12,7 +12,6 @@ import com.faculte.simplefacultecommande.domain.model.dao.CommandeDao;
 import com.faculte.simplefacultecommande.domain.model.dao.CommandeItemDao;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeItemService;
 import com.faculte.simplefacultecommande.domain.model.service.CommandeService;
-import com.faculte.simplefacultecommande.domain.rest.vo.CommandeItemVo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,16 +104,16 @@ public class CommandeServiceItemImpl implements CommandeItemService {
     }
 
     @Override
-    public int incrementQteReception(CommandeItemVo commandeItem) {
+    public int incrementQteReception(String referenceCommande, CommandeItem commandeItem) {
 
-        CommandeItem ci = commandeItemDao.findByCommandeAndReferenceProduit(commandeDao.findByReference(commandeItem.getReferenceCommande()), commandeItem.getReferenceProduit());
+        CommandeItem ci = commandeItemDao.findByCommandeReferenceAndReferenceProduit(referenceCommande, commandeItem.getReferenceProduit());
         if (ci == null) {
             return -2;
         }
-        if (NumberUtil.toInt(commandeItem.getQteReception()) > ci.getQte() - ci.getQteReception()) {
+        if (commandeItem.getQteReception() > ci.getQte() - ci.getQteReception()) {
             return -1;
         } else {
-            ci.setQteReception(ci.getQteReception() + NumberUtil.toDecimal(commandeItem.getQteReception()));
+            ci.setQteReception(ci.getQteReception() + commandeItem.getQteReception());
             commandeItemDao.save(ci);
             return 1;
         }
@@ -146,16 +145,16 @@ public class CommandeServiceItemImpl implements CommandeItemService {
     }
 
     @Override
-    public int decrementQteReception(CommandeItemVo commandeItem) {
+    public int decrementQteReception(String referenceCommande, CommandeItem commandeItem) {
 
-        CommandeItem ci = commandeItemDao.findByCommandeAndReferenceProduit(commandeDao.findByReference(commandeItem.getReferenceCommande()), commandeItem.getReferenceProduit());
+        CommandeItem ci = commandeItemDao.findByCommandeReferenceAndReferenceProduit(referenceCommande, commandeItem.getReferenceProduit());
         if (ci == null) {
             return -2;
         }
-        if (NumberUtil.toInt(commandeItem.getQteReception()) > ci.getQteReception()) {
+        if (commandeItem.getQteReception() > ci.getQteReception()) {
             return -1;
         } else {
-            ci.setQteReception(ci.getQteReception() - NumberUtil.toInt(commandeItem.getQteReception()));
+            ci.setQteReception(ci.getQteReception() - commandeItem.getQteReception());
             commandeItemDao.save(ci);
             return 1;
         }

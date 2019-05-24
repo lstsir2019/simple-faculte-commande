@@ -16,12 +16,14 @@ import org.springframework.stereotype.Repository;
  * @author mohcines
  */
 @Repository
-public interface CommandeItemDao extends JpaRepository<CommandeItem, Long>{
-    
+public interface CommandeItemDao extends JpaRepository<CommandeItem, Long> {
+
     public List<CommandeItem> findByCommandeReference(String reference);
-    public CommandeItem findByCommandeAndReferenceProduit(Commande commande , String referenceProduit);
+
+    public CommandeItem findByCommandeAndReferenceProduit(Commande commande, String referenceProduit);
+
+    public CommandeItem findByCommandeReferenceAndReferenceProduit(String reference, String referenceProduit);
+
     public CommandeItem findById(long id);
-   
-    
-    
+
 }

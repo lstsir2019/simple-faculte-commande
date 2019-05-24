@@ -43,19 +43,21 @@ public class CommandeItemRest {
     //========================================= Delegate Methods =============================================
     @PutMapping("/QteReception/increment")
     public int incrementQteReception(@RequestBody CommandeItemVo commandeItemVo) {
-        return commandeItemService.incrementQteReception(commandeItemVo);
+        CommandeItem commandeItem = commandeItemConverter.toItem(commandeItemVo);
+        return commandeItemService.incrementQteReception(commandeItemVo.getReferenceCommande(), commandeItem);
     }
 
     @PutMapping("/QteReception/decrement")
     public int decrementQteReception(@RequestBody CommandeItemVo commandeItemVo) {
-        return commandeItemService.decrementQteReception(commandeItemVo);
+        CommandeItem commandeItem = commandeItemConverter.toItem(commandeItemVo);
+        return commandeItemService.decrementQteReception(commandeItemVo.getReferenceCommande(), commandeItem);
     }
 
     @PutMapping("/commandeExpression/{referenceCommandeExpression}/QteLivre/{qte}/increment")
     public int incerementQteLivre(@PathVariable String referenceCommandeExpression, @PathVariable int qte) {
         return commandeSourceService.incerementQteLivre(referenceCommandeExpression, qte);
     }
-    
+
     @PutMapping("/commandeExpression/{referenceCommandeExpression}/QteLivre/{qte}/decrement")
     public int decerementQteLivre(@PathVariable String referenceCommandeExpression, @PathVariable int qte) {
         return commandeSourceService.decerementQteLivre(referenceCommandeExpression, qte);
@@ -86,6 +88,14 @@ public class CommandeItemRest {
 
     public void setCommandeItemConverter(AbstractConverter<CommandeItem, CommandeItemVo> commandeItemConverter) {
         this.commandeItemConverter = commandeItemConverter;
+    }
+
+    public CommandeSourceService getCommandeSourceService() {
+        return commandeSourceService;
+    }
+
+    public void setCommandeSourceService(CommandeSourceService commandeSourceService) {
+        this.commandeSourceService = commandeSourceService;
     }
 
 }
