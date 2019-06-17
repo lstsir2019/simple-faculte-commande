@@ -97,6 +97,16 @@ public class CommandeServiceImpl implements CommandeService {
     }
     
     @Override
+    public int commandeNonPayer() {
+        int x=0;
+        List<Commande> commandes=commandeService.findAllCommande();
+        for (Commande commande : commandes) {
+            if(commande.getTotal()!=commande.getTotalPaiement()) x=x+1;
+        }
+        return x;
+    }
+    
+    @Override
     public Commande findByReferenceOffre(String referenceOffre) {
             return commandeDao.findByReferenceOffre(referenceOffre);
     }
@@ -142,6 +152,8 @@ public class CommandeServiceImpl implements CommandeService {
     public void setCommandeService(CommandeService commandeService) {
         this.commandeService = commandeService;
     }
+
+    
 
     
 

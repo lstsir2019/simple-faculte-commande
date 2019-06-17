@@ -27,15 +27,14 @@ public class PaiementServiceImpl implements PaiementService {
 
     @Autowired
     private CommandeService commandeService;
-    
-    
+
     @Override
     public List<Paiement> findByCommandeReference(String reference) {
         return paiementDao.findByCommandeReference(reference);
     }
 
     @Override
-    public int payerCommande(String referenceCommande, double montant) {
+    public int payerCommande(String referenceCommande, double montant, String type) {
         Commande commande = commandeService.findByReference(referenceCommande);
         if (commande == null) {
             return -1;
@@ -43,10 +42,18 @@ public class PaiementServiceImpl implements PaiementService {
             return -2;
         } else if (commande.getTotal() == commande.getTotalPaiement()) {
             return -3;
+        } else if (!type.equals("cash") && !type.equals("cheque")) {
+                return -4;
         } else {
             commande.setTotalPaiement(commande.getTotalPaiement() + montant);
             Paiement p = new Paiement();
             p.setCommande(commande);
+            if (type.equals("cash")) {
+                p.setType("cash");
+            }else if(type.equals("cheque")){
+                p.setType("cheque");
+            }
+            
             p.setMontant(montant);
             p.setDatePaiement(new Date());
             paiementDao.save(p);
@@ -70,7 +77,5 @@ public class PaiementServiceImpl implements PaiementService {
     public void setCommandeService(CommandeService commandeService) {
         this.commandeService = commandeService;
     }
-
-    
 
 }

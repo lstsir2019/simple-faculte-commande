@@ -27,5 +27,6 @@ public interface CommandeService {
     
     public Commande findByReferenceOffre(String referenceOffre);
     
+    public int commandeNonPayer();
 
 }

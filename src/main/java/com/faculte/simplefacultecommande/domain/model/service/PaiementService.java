@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PaiementService {
     
-    public int payerCommande(String referenceCommande,double montant);
+    public int payerCommande(String referenceCommande,double montant,String type);
     public List<Paiement> findByCommandeReference(String reference);
     
 }

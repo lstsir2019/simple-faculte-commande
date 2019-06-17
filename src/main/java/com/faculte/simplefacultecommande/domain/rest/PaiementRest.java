@@ -53,9 +53,9 @@ public class PaiementRest {
     public List<PaiementVo> findByCommandeReference(@PathVariable String reference) {
         return paiementConverter.toVo(paiementService.findByCommandeReference(reference));
     }
-    @PostMapping("/referenceCommande/{referenceCommande}/montant/{montant}")
-    public int payerCommande(@PathVariable String referenceCommande,@PathVariable double montant) {
-        return paiementService.payerCommande(referenceCommande, montant);
+    @PostMapping("/referenceCommande/{referenceCommande}/montant/{montant}/type/{type}")
+    public int payerCommande(@PathVariable String referenceCommande,@PathVariable double montant,@PathVariable String type) {
+        return paiementService.payerCommande(referenceCommande, montant,type);
     }
     
     @GetMapping("/pdf/paiement/{reference}")

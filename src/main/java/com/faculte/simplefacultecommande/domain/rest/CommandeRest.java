@@ -171,6 +171,13 @@ public class CommandeRest {
         return commandeConverter.toVo(commandeService.findByReferenceOffre(referenceOffre));
     }
 
+    @GetMapping("/commandenonpayer")
+    public int commandeNonPayer() {
+        return commandeService.commandeNonPayer();
+    }
+
+    
+    
     public CommandeService getCommandeService() {
         return commandeService;
     }
