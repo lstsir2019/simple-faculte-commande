@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  jeu. 18 avr. 2019 à 10:13
--- Version du serveur :  10.1.35-MariaDB
--- Version de PHP :  7.2.9
+-- Host: 127.0.0.1
+-- Generation Time: Jun 19, 2019 at 02:48 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,13 +20,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `simple_faculte_commande`
+-- Database: `simple_faculte_commande`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commande`
+-- Table structure for table `commande`
 --
 
 CREATE TABLE `commande` (
@@ -35,23 +35,22 @@ CREATE TABLE `commande` (
   `reference` varchar(255) DEFAULT NULL,
   `total` double NOT NULL,
   `total_paiement` double NOT NULL,
-  `fournisseur` bigint(20) DEFAULT NULL
+  `fournisseur` bigint(20) DEFAULT NULL,
+  `reference_offre` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `commande`
+-- Dumping data for table `commande`
 --
 
-INSERT INTO `commande` (`id`, `date_commande`, `reference`, `total`, `total_paiement`, `fournisseur`) VALUES
-(1, '2019-02-11', 'cmd-03', 250, 50, 1),
-(3, '2019-03-05', 'cmd-01', 167, 0, 1),
-(6, '2019-03-01', 'cmd-02', 403, 0, 1),
-(15, '2019-04-25', 'hhh', 9, 0, 1);
+INSERT INTO `commande` (`id`, `date_commande`, `reference`, `total`, `total_paiement`, `fournisseur`, `reference_offre`) VALUES
+(98, '2019-05-29', 'cmd-02', 160, 160, 1, ''),
+(95, '2019-05-29', 'cmd-01', 29000, 0, 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commande_item`
+-- Table structure for table `commande_item`
 --
 
 CREATE TABLE `commande_item` (
@@ -60,66 +59,67 @@ CREATE TABLE `commande_item` (
   `qte` int(11) NOT NULL,
   `qte_reception` int(11) NOT NULL,
   `reference_produit` varchar(255) DEFAULT NULL,
-  `commande` bigint(20) DEFAULT NULL
+  `commande` bigint(20) DEFAULT NULL,
+  `qte_affecte` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `commande_item`
+-- Dumping data for table `commande_item`
 --
 
-INSERT INTO `commande_item` (`id`, `prix`, `qte`, `qte_reception`, `reference_produit`, `commande`) VALUES
-(2, 50, 5, 0, 'pr1', 1),
-(4, 9, 7, 0, 'pr2', 3),
-(5, 26, 4, 0, 'pr3', 3),
-(7, 13, 19, 0, 'pr1', 6),
-(8, 13, 12, 0, 'pr2', 6),
-(16, 3, 3, 0, 'hhh', 15);
+INSERT INTO `commande_item` (`id`, `prix`, `qte`, `qte_reception`, `reference_produit`, `commande`, `qte_affecte`) VALUES
+(100, 2, 30, 0, 'stylo', 98, 3),
+(99, 5, 20, 0, 'pr-3', 98, 0),
+(97, 3000, 3, 0, 'hp', 95, 0),
+(96, 4000, 5, 0, 'azus', 95, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commande_source`
+-- Table structure for table `commande_source`
 --
 
 CREATE TABLE `commande_source` (
   `id` bigint(20) NOT NULL,
   `qte_affecte` int(11) NOT NULL,
   `reference_expression_besoin_item` varchar(255) DEFAULT NULL,
-  `commande_item` bigint(20) DEFAULT NULL
+  `commande_item` bigint(20) DEFAULT NULL,
+  `qte_livre` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `commande_source`
+-- Dumping data for table `commande_source`
 --
 
-INSERT INTO `commande_source` (`id`, `qte_affecte`, `reference_expression_besoin_item`, `commande_item`) VALUES
-(12, 1, '11', 7),
-(13, 3, '14', 7);
+INSERT INTO `commande_source` (`id`, `qte_affecte`, `reference_expression_besoin_item`, `commande_item`, `qte_livre`) VALUES
+(101, 3, '87', 100, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fournisseur`
+-- Table structure for table `fournisseur`
 --
 
 CREATE TABLE `fournisseur` (
   `id` bigint(20) NOT NULL,
   `libelle` varchar(255) DEFAULT NULL,
   `raison_social` varchar(255) DEFAULT NULL,
-  `reference` varchar(255) DEFAULT NULL
+  `reference` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `fournisseur`
+-- Dumping data for table `fournisseur`
 --
 
-INSERT INTO `fournisseur` (`id`, `libelle`, `raison_social`, `reference`) VALUES
-(1, 'companie x', 'sarl', 'fr-36');
+INSERT INTO `fournisseur` (`id`, `libelle`, `raison_social`, `reference`, `email`, `numero`) VALUES
+(1, 'companie x', 'sarl', 'fr-36', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `hibernate_sequence`
+-- Table structure for table `hibernate_sequence`
 --
 
 CREATE TABLE `hibernate_sequence` (
@@ -127,20 +127,20 @@ CREATE TABLE `hibernate_sequence` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `hibernate_sequence`
+-- Dumping data for table `hibernate_sequence`
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(17),
-(17),
-(17),
-(17),
-(17);
+(104),
+(104),
+(104),
+(104),
+(104);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `paiement`
+-- Table structure for table `paiement`
 --
 
 CREATE TABLE `paiement` (
@@ -152,45 +152,46 @@ CREATE TABLE `paiement` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `paiement`
+-- Dumping data for table `paiement`
 --
 
 INSERT INTO `paiement` (`id`, `date_paiement`, `montant`, `type`, `commande`) VALUES
-(14, '2019-03-30', 50, NULL, 1);
+(102, '2019-06-17', 120, 'cash', 98),
+(103, '2019-06-18', 40, 'cash', 98);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `commande`
+-- Indexes for table `commande`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKrupnw7i4hq1m1s78m9ui94xs3` (`fournisseur`);
 
 --
--- Index pour la table `commande_item`
+-- Indexes for table `commande_item`
 --
 ALTER TABLE `commande_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK4obrfcid8ag7xmsyw50xefiee` (`commande`);
 
 --
--- Index pour la table `commande_source`
+-- Indexes for table `commande_source`
 --
 ALTER TABLE `commande_source`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK2uaujun7ojxj9ni32fkccch0` (`commande_item`);
 
 --
--- Index pour la table `fournisseur`
+-- Indexes for table `fournisseur`
 --
 ALTER TABLE `fournisseur`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `paiement`
+-- Indexes for table `paiement`
 --
 ALTER TABLE `paiement`
   ADD PRIMARY KEY (`id`),
